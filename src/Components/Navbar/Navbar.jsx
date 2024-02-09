@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
 
 function Navbar() {
-    const [toggle, setToggle] = useState(false)
+    const [toggle, setToggle] = useState(true)
   return (
     <>
         <div className='w-full gap-4'>
@@ -18,7 +18,6 @@ function Navbar() {
                     toggle ?
                     <div className='md:hidden flex justify-center items-center text-2xl'>
                         <HiMenu onClick={()=>setToggle(!toggle)}/>
-                        {console.log(toggle)}
                     </div>
                     :
                     <div className='md:hidden flex justify-center items-center text-2xl'>
@@ -38,7 +37,7 @@ function Navbar() {
             </div>
                 
                 {/* slider navbar for mobile */}
-            <div className={`md:hidden flex bg-slate-600 max-w-full h-auto ${toggle ? 'mx-[-100%]' : 'mx-[0%]' }  text-white mt-4`}>
+            <div className={`md:hidden absolute flex bg-slate-600 max-w-full h-auto ${toggle ? 'mx-[-100%]' : 'mx-[0%]' }  text-white mt-4 z-10`}>
                     <ul className='flex flex-col items-center gap-4 p-4 font-bold'>
                         <li className='hover:text-gray-800 hover:text-lg hover:transition-all duration-200 cursor-pointer'><NavLink to = '/'>Home</NavLink></li>
                         <li className='hover:text-gray-800 hover:text-lg hover:transition-all duration-200 cursor-pointer'><NavLink to = 'batches'>Batches</NavLink></li>
