@@ -7,7 +7,7 @@ function Footer() {
     <>
     <footer class="bg-gray-500">
         <div class="w-full flex-col justify-center items-center">
-            <div className='grid md:grid-cols-3 gap-5 p-10 mt-5'>
+            <div className='grid md:grid-cols-3 gap-5 p-10'>
               <div className='bg-slate-800 shadow-md shadow-slate-950 p-4'>
                 <h1 className='text-3xl font-bold'>Stay Connect</h1>
                 <div className='flex overflow-hidden mt-8 shadow-lg shadow-gray-950 rounded-lg'>

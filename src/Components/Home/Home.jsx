@@ -1,9 +1,40 @@
 import React from 'react'
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import HomeCards from './HomeCards';
+import BatcheCards from '../Batches/BatcheCards';
+import ProjectCard from '../Projects/ProjectCard';
+import Ali from '../../assets/Mohd_Ali.jpeg';
+import Anil from '../../assets/anil.jpg';
+import Abbas from '../../assets/abbas.jpg';
+import Yashika from '../../assets/yashika.jpeg';
 
 function Home() {
     const colors = [{color:'#ff0f5b'}, {color:'#0f0'}, {color:'lime'}, {color:'#18fff3'}, {color:'#18fff3'}]
+
+    const details = [
+        {
+            img:Ali,
+            name: 'Mohd Ali',
+            profession: 'Web Developer',
+            color: 'lime'
+        },
+        {
+            img:Anil,
+            name: 'Anil Kumar',
+            profession: 'Chutiya',
+            color: '#ff0',
+        },
+        {   img:Abbas,
+            name: 'Mohd Abbas',
+            profession: 'Full Stack Developer',
+            color: '#ff0f5b',
+        },
+        {   img:Yashika,
+            name: 'Yashika Gupta',
+            profession: 'Backend Developer',
+            color: 'lime',
+        }
+    ]
   return (
     <>
         <div className='flex justify-center items-center overflow-hidden'>
@@ -16,30 +47,59 @@ function Home() {
                     <p>Welcome to</p> 
                     <p className='text-[#fff200] bg-[#f08] px-4 pb-1 rounded-md'> College Journey</p>
                 </div>
-
-                <div className='w-full sm:flex hidden lg:justify-center items-center p-3 gap-5 overflow-x-auto'>
+                {/* developer cards for tablet and greater than tables */}
+                <div className='sm:flex hidden lg:justify-center items-center p-3 gap-5 overflow-x-auto'>
                     {
-                        colors.map(({color})=>
+                        details.map((detail)=>
 
-                            <HomeCards color={color}/>
+                            <HomeCards detail={detail}/>
                         )
                     }
                 </div>
             </div>
         </div>
-
+        {/* developer cards for mobile */}
         <div className='w-full font-extrabold flex flex-col sm:hidden p-4 bg-gray-600 justify-center gap-4'>
-            <div className='text-2xl text-[lime] font-bold py-2'><h1>Developers</h1></div>
-            <div className='gap-4 flex md:justify-center md:items-center justify-start overflow-x-auto'>
+            <div className='text-2xl text-[lime] font-bold px-4 py-2'><h1>Developers</h1></div>
+            <div className='gap-4 p-4 flex md:justify-center md:items-center justify-start overflow-x-auto'>
                         {
-                            colors.map(()=>
+                            details.map((detail)=>
 
-                                <HomeCards />
+                            <HomeCards detail={detail}/>
                             )
                         }
             </div>
         </div>
-        
+
+
+        {/* batches */}
+        <div className='relative w-full font-extrabold flex flex-col p-4 bg-gray-600 justify-center gap-4'>
+            <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 left-0 bg-[#ff0] rounded-tr-[100%]`}></div>
+            <div className='text-2xl text-[lime] font-bold px-4 py-2'><h1>Batches</h1></div>
+            <div className='gap-4 p-4 flex lg:justify-center md:items-center justify-start overflow-x-auto'>
+                        {
+                            colors.map(()=>
+
+                                <BatcheCards />
+                            )
+                        }
+            </div>
+        </div>
+
+        {/* Projects */}
+        <div className='relative w-full font-extrabold flex flex-col p-4 justify-center gap-4 bg-gray-600'>
+            <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 right-0 bg-[lime] rounded-tl-[100%]`}></div>
+
+            <div className='text-2xl text-[lime] font-bold px-4 py-2'><h1>Projects</h1></div>
+            <div className='gap-4 p-4 flex lg:justify-center md:items-center justify-start overflow-x-auto'>
+                        {
+                            colors.map(()=>
+
+                                <ProjectCard />
+                            )
+                        }
+            </div>
+        </div>
     </>
   )
 }

@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     element:<Error/>
   }
 ])
-
+document.getElementById('root').style.backgroundColor = '#505050'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
