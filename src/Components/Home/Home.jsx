@@ -16,23 +16,23 @@ function Home() {
             img:Ali,
             name: 'Mohd Ali',
             profession: 'Web Developer',
-            color: 'lime'
+            color: '#8aaaee',
         },
         {
             img:Anil,
             name: 'Anil Kumar',
-            profession: 'Chutiya',
-            color: '#ff0',
+            profession: 'Full Stack Developver',
+            color: '#8aaaee',
         },
         {   img:Abbas,
             name: 'Mohd Abbas',
             profession: 'Full Stack Developer',
-            color: '#ff0f5b',
+            color: '#8aaaee',
         },
         {   img:Yashika,
             name: 'Yashika Gupta',
             profession: 'Backend Developer',
-            color: 'lime',
+            color: '#8aaaee',
         }
     ]
   return (
@@ -45,7 +45,7 @@ function Home() {
             <div className='w-full absolute p-4 font-extrabold flex flex-col justify-center items-center gap-5'>
                 <div className='lg:text-6xl sm:text-4xl text-xl flex justify-center gap-4 items-center p-4 cursor-pointer'>
                     <p>Welcome to</p> 
-                    <p className='text-[#fff200] bg-[#f08] px-4 pb-1 rounded-md'> College Journey</p>
+                    <p className='text-white px-4 pb-1 rounded-md hover:animate-bounce duration-100'> College Journey</p>
                 </div>
                 {/* developer cards for tablet and greater than tables */}
                 <div className='sm:flex hidden lg:justify-center items-center p-3 gap-5 overflow-x-auto'>
@@ -59,8 +59,8 @@ function Home() {
             </div>
         </div>
         {/* developer cards for mobile */}
-        <div className='w-full font-extrabold flex flex-col sm:hidden p-4 bg-gray-600 justify-center gap-4'>
-            <div className='text-2xl text-[lime] font-bold px-4 py-2'><h1>Developers</h1></div>
+        <div className='w-full font-extrabold flex flex-col sm:hidden p-4 bg-[#88ccee] justify-center gap-4'>
+            <div className='text-2xl text-white font-bold px-4 py-2'><h1>Developers</h1></div>
             <div className='gap-4 p-4 flex md:justify-center md:items-center justify-start overflow-x-auto'>
                         {
                             details.map((detail)=>
@@ -73,9 +73,9 @@ function Home() {
 
 
         {/* batches */}
-        <div className='relative w-full font-extrabold flex flex-col p-4 bg-gray-600 justify-center gap-4'>
-            <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 left-0 bg-[#ff0] rounded-tr-[100%]`}></div>
-            <div className='text-2xl text-[lime] font-bold px-4 py-2'><h1>Batches</h1></div>
+        <div className='relative w-full font-extrabold flex flex-col p-4 bg-[#94b6ff] justify-center gap-4'>
+            {/* <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 left-0 bg-[#ff0] rounded-tr-[100%]`}></div> */}
+            <div className='text-2xl text-white font-bold px-4 py-2'><h1>Batches</h1></div>
             <div className='gap-4 p-4 flex lg:justify-center md:items-center justify-start overflow-x-auto'>
                         {
                             colors.map(()=>
@@ -87,10 +87,10 @@ function Home() {
         </div>
 
         {/* Projects */}
-        <div className='relative w-full font-extrabold flex flex-col p-4 justify-center gap-4 bg-gray-600'>
-            <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 right-0 bg-[lime] rounded-tl-[100%]`}></div>
+        <div className='relative w-full font-extrabold flex flex-col p-4 justify-center gap-4 bg-[#8fb0f8]'>
+            {/* <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 right-0 bg-[lime] rounded-tl-[100%]`}></div> */}
 
-            <div className='text-2xl text-[lime] font-bold px-4 py-2'><h1>Projects</h1></div>
+            <div className='text-2xl text-white font-bold px-4 py-2'><h1>Projects</h1></div>
             <div className='gap-4 p-4 flex lg:justify-center md:items-center justify-start overflow-x-auto'>
                         {
                             colors.map(()=>

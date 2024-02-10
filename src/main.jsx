@@ -7,6 +7,7 @@ import Login from './Components/Login/Login.jsx';
 import Signup from './Components/Signup/Signup.jsx';
 import './index.css'
 import Home from './Components/Home/Home.jsx';
+import Registration from './Components/Registration/Registration.jsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         path:'/signup',
         element:<Signup/>
       },
+      {
+        path:'/registration',
+        element:<Registration/>
+      },
     ]
   },
   {
@@ -32,7 +37,8 @@ const router = createBrowserRouter([
     element:<Error/>
   }
 ])
-document.getElementById('root').style.backgroundColor = '#505050'
+// #98B880
+document.getElementById('root').style.backgroundColor = '#88ccee'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
