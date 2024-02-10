@@ -16,28 +16,24 @@ function Home() {
             img:Ali,
             name: 'Mohd Ali',
             profession: 'Web Developer',
-            color: '#8aaaee',
         },
         {
             img:Anil,
             name: 'Anil Kumar',
             profession: 'Full Stack Developver',
-            color: '#8aaaee',
         },
         {   img:Abbas,
             name: 'Mohd Abbas',
             profession: 'Full Stack Developer',
-            color: '#8aaaee',
         },
         {   img:Yashika,
             name: 'Yashika Gupta',
             profession: 'Backend Developer',
-            color: '#8aaaee',
         }
     ]
   return (
     <>
-        <div className='flex justify-center items-center overflow-hidden'>
+        <div className='flex justify-center items-center'>
             <div className='mt-4 opacity-[0.6] w-full'>
                 <img className='w-full object-cover' src="https://images.unsplash.com/flagged/photo-1554473675-d0904f3cbf38?w=1080&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvbGxlZ2V8ZW58MHx8MHx8fDA%3D" alt="" />
             </div>
@@ -59,7 +55,7 @@ function Home() {
             </div>
         </div>
         {/* developer cards for mobile */}
-        <div className='w-full font-extrabold flex flex-col sm:hidden p-4 bg-[#88ccee] justify-center gap-4'>
+        <div className='w-full font-extrabold flex flex-col sm:hidden p-4 bg-[#8fb0f8] justify-center gap-4'>
             <div className='text-2xl text-white font-bold px-4 py-2'><h1>Developers</h1></div>
             <div className='gap-4 p-4 flex md:justify-center md:items-center justify-start overflow-x-auto'>
                         {

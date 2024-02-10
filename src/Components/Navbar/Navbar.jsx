@@ -39,13 +39,13 @@ function Navbar() {
             </div>
                 
                 {/* slider navbar for mobile */}
-            <div className={`md:hidden absolute flex bg-slate-600 max-w-full h-auto ${toggle ? 'mx-[-100%]' : 'mx-[0%]' }  text-white mt-4 z-10`}>
+            <div className={`md:hidden absolute flex bg-[#8aaaee] max-w-full h-auto ${toggle ? 'mx-[-100%]' : 'mx-[0%]' }  text-white mt-4 z-10`}>
                     <ul className='flex flex-col items-center gap-4 p-4 font-bold'>
-                        <li className='hover:text-gray-800 hover:text-lg hover:transition-all duration-200 cursor-pointer'><NavLink to = '/'>Home</NavLink></li>
-                        <li className='hover:text-gray-800 hover:text-lg hover:transition-all duration-200 cursor-pointer'><NavLink to = 'batches'>Batches</NavLink></li>
-                        <li className='hover:text-gray-800 hover:text-lg hover:transition-all duration-200 cursor-pointer'><NavLink to = 'projects'>Projects</NavLink></li>
-                        <li className='hover:text-gray-800 hover:text-lg hover:transition-all duration-200 cursor-pointer'><NavLink to = 'login'>Login</NavLink></li>
-                        <li className='hover:text-gray-800 hover:text-lg hover:transition-all duration-200 cursor-pointer'><NavLink to = 'signup'>Signup</NavLink></li>
+                        <li className={`hover:text-[#88ccee] hover:text-lg hover:transition-all duration-200 cursor-pointer`} onClick={()=>setToggle(!toggle)}><NavLink to = '/'>Home</NavLink></li>
+                        <li className='hover:text-[#88ccee] hover:text-lg hover:transition-all duration-200 cursor-pointer' onClick={()=>setToggle(!toggle)}><NavLink to = 'batches'>Batches</NavLink></li>
+                        <li className='hover:text-[#88ccee] hover:text-lg hover:transition-all duration-200 cursor-pointer' onClick={()=>setToggle(!toggle)}><NavLink to = 'projects'>Projects</NavLink></li>
+                        <li className='hover:text-[#88ccee] hover:text-lg hover:transition-all duration-200 cursor-pointer' onClick={()=>setToggle(!toggle)}><NavLink to = 'login'>Login</NavLink></li>
+                        <li className='hover:text-[#88ccee] hover:text-lg hover:transition-all duration-200 cursor-pointer' onClick={()=>setToggle(!toggle)}><NavLink to = 'signup'>Signup</NavLink></li>
                     </ul>
                 </div>
         </div>
