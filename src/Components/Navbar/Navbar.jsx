@@ -28,12 +28,12 @@ function Navbar() {
                 {/* Navbar items which display when medium device width will occure */}
                 <div className='hidden md:flex'>
                     <ul className='flex justify-center items-center gap-4 p-4 font-bold'>
-                        <li className='hover:text-gray-800 cursor-pointer hover:text-lg hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 hover:p-1 rounded-md'><NavLink to='/'>Home </NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:text-lg hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 hover:p-1 rounded-md'><NavLink to='batches'>Batches </NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:text-lg hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 hover:p-1 rounded-md'><NavLink to = 'projects'>Projects</NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:text-lg hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 hover:p-1 rounded-md'><NavLink to = 'registration'>Registration</NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:text-lg hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 hover:p-1 rounded-md'><NavLink to = 'login'>Login</NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:text-lg hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 hover:p-1 rounded-md'><NavLink to = 'signup'>Signup</NavLink></li>
+                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to='/'>Home </NavLink></li>
+                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to='batches'>Batches </NavLink></li>
+                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'projects'>Projects</NavLink></li>
+                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'registration'>Registration</NavLink></li>
+                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'login'>Login</NavLink></li>
+                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'signup'>Signup</NavLink></li>
                     </ul>
                 </div>
             </div>

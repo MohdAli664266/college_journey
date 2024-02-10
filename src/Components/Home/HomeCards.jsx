@@ -7,7 +7,7 @@ function HomeCards({detail}) {
             <div className='relative md:w-[220px] w-[150px] p-4 flex flex-col justify-center items-center shadow-md shadow-gray-950 md:gap-5 gap-1'>
                 <div className={`absolute w-8 h-8 top-0 left-0 p-4 bg-[#6483ad] rounded-br-[100px]`}></div>
                 <div className='flex flex-col justify-center items-center'>
-                    <img className='rounded-full md:w-[170px] md:h-[170px] sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] object-left-top object-cover hover:cursor-pointer transition-all hover:border-2 border-white ease-in duration-200 shadow-md shadow-gray-950' src={detail.img} alt="" />
+                    <img className='rounded-full md:w-[170px] md:h-[170px] sm:w-[100px] sm:h-[100px] w-[50px] h-[50px] object-left-top object-cover hover:cursor-pointer shadow-md shadow-gray-950' src={detail.img} alt="" />
                     <h1 className={`sm:text-2xl text-lg text-white font-extrabold cursor-pointer font-serif`}>{detail.name}</h1>
                 </div>
                 <hr className={`bg-white border-1 border-[#fff] w-full`} />
