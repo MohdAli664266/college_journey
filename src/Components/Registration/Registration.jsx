@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-
+import { Client, Storage , ID} from "appwrite";
+import conf from '../../conf/conf';
+import authService from '../appwrite/auth';
 const Registration = () => {
+
+
   const [formData, setFormData] = useState({
     year: '',
     course: '',
@@ -15,10 +19,29 @@ const Registration = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const fileHandling = (e) =>{
+    console.log(e.target.file[0])
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can perform further actions here, such as submitting the data
-    console.log(formData);
+    const client = new Client()
+      .setEndpoint(conf.appwriteUrl)
+      .setProject(conf.projectId);
+  
+    const storage = new Storage(client);
+  
+    const promise = storage.createFile(
+      conf.bucketId,
+      ID.unique(),
+      document.getElementById('photo').files[0]
+    );
+    promise.then(function (response) {
+      console.log(response); // Success
+      alert("Your registration has been completed successfully");
+    }, function (error) {
+        console.log(error); // Failure
+    });
   };
 
   return (
@@ -42,7 +65,7 @@ const Registration = () => {
 
         <div className="mb-4">
           <label htmlFor="photo" className="block text-xl font-medium mb-1">Photo</label>
-          <input type="file" id="photo" name="photo" onChange={handleChange} className="p-2 rounded-full outline-none shadow-sm shadow-gray-950 block w-full sm:text-sm" />
+          <input type="file" id="photo" name="photo" onChange={fileHandling} className="p-2 rounded-full outline-none shadow-sm shadow-gray-950 block w-full sm:text-sm" />
         </div>
 
         <div className="mb-4">

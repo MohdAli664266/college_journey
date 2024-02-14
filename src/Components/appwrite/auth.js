@@ -4,6 +4,7 @@ import conf from '../../conf/conf';
 export class AuthService{
     client = new Client();
     account;
+    sessionId;
 
     constructor()
     {
@@ -18,6 +19,7 @@ export class AuthService{
     {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name, phone)
+            this.login({email, password})
             return userAccount;
         } catch (error) {
             console.log(error)
@@ -28,7 +30,9 @@ export class AuthService{
     {
         try
         {
-            return await this.account.createEmailSession(email, password);
+            const login = await this.account.createEmailSession(email, password);
+            localStorage.setItem('sessionId', login.$id);
+            return login;
         }catch(error)
         {
             throw error;
@@ -47,7 +51,7 @@ export class AuthService{
     async logout()
     {
         try {
-            return await this.account.deleteSession();
+            return await this.account.deleteSession(localStorage.getItem('sessionId'));
         } catch (error) {
             throw error;            
         }

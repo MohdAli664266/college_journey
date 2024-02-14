@@ -1,0 +1,1 @@
+export {GlobalUser} from './ContextApi';

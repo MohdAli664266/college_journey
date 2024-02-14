@@ -12,19 +12,13 @@ function Signup(){
     const createAcount = ()=>
     {
         const userAcount = authService.creatAccount({email, password, name, phone});
-        if(userAcount)
-        {
+        userAcount.then((response)=>{
             setEmail('')
             setName('')
             setPassword('')
             setPhone('')
-            alert("Your acount is created successfully");
             navigate('/home')
-
-        }else
-        {
-            console.log("Something went wrong");
-        }
+        }).catch((error)=>console.log(error))
     }
     return (
         <>

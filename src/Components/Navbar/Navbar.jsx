@@ -3,9 +3,24 @@ import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
 import College_Journey_Logo from '../../assets/college_journey_logo.png';
+import authService from '../appwrite/auth';
 
 function Navbar() {
     const [toggle, setToggle] = useState(true)
+    const [user, setUser] = useState(false);
+
+    authService.getCurrentUser().then((resp)=>
+    {
+        setUser(true)
+    });
+
+    const logout = ()=>
+    {
+        authService.logout().then((response)=>{
+            alert("You have logout successfully");
+            setUser(false);
+        }).catch((error)=>alert("Sorry! something went wrong"));
+    }
   return (
     <>
         <div className='w-full gap-4 bg-[#8aaaee] text-white'>
@@ -25,15 +40,28 @@ function Navbar() {
                         <IoClose onClick={()=>setToggle(!toggle)}/>
                     </div>
                 }
-                {/* Navbar items which display when medium device width will occure */}
+                {/* Navbar items which display when medium or from greater device width will occure */}
                 <div className='hidden md:flex'>
                     <ul className='flex justify-center items-center gap-4 p-4 font-bold'>
                         <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to='/'>Home </NavLink></li>
                         <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to='batches'>Batches </NavLink></li>
                         <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'projects'>Projects</NavLink></li>
                         <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'registration'>Registration</NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'login'>Login</NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'signup'>Signup</NavLink></li>
+                        {
+                            user ?
+                            <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md' onClick={()=>logout()}>Logout</li>
+                             :
+                             <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'login'>Login</NavLink></li>
+                        }
+
+                        {
+                            user ?
+                            <li className='hidden hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'signup'>Signup</NavLink></li>
+                            :
+                            <li className='block hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'signup'>Signup</NavLink></li>
+                        }                  
+
+
                     </ul>
                 </div>
             </div>

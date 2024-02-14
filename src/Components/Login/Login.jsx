@@ -11,15 +11,12 @@ function Login(){
     const check = ()=>
     {
         const user = authService.login({email, password})
-        if(user)
-        {
+        user.then((response)=>{
             setEmail('');
             setPassword('');
+            alert("Your are logged in successfully");
             navigate('/')
-        }else
-        {
-            alert("Sorry! email or password is wrong");
-        }
+        }).catch((error)=>alert("Email or password is wrong please provide a valid email and password"))
         
     }
     return (
