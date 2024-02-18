@@ -8,7 +8,8 @@ import Signup from './Components/Signup/Signup.jsx';
 import './index.css'
 import Home from './Components/Home/Home.jsx';
 import Registration from './Components/Registration/Registration.jsx'
-
+import { Provider } from 'react-redux';
+import { store } from './Components/Store/Store.js'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -45,6 +46,8 @@ const router = createBrowserRouter([
 document.getElementById('root').style.backgroundColor = '#88ccee'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <Provider store={store}>
     <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 )

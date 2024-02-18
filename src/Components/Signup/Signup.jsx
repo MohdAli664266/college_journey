@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { loginReducer } from "../Store/Reducers/Reducer";
 function Signup(){
+
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const userState = useSelector(state => state.userInfo.user);
 
     const createAcount = ()=>
     {
@@ -17,7 +22,9 @@ function Signup(){
             setName('')
             setPassword('')
             setPhone('')
-            navigate('/home')
+            dispatch(loginReducer(userState))
+            alert("Thank you for signup")
+            navigate('/')
         }).catch((error)=>console.log(error))
     }
     return (

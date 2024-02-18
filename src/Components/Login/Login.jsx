@@ -2,12 +2,15 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginReducer } from "../Store/Reducers/Reducer";
 
 function Login(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
+    const userState = useSelector(state => state.userInfo.user)
     const check = ()=>
     {
         const user = authService.login({email, password})
@@ -15,6 +18,7 @@ function Login(){
             setEmail('');
             setPassword('');
             alert("Your are logged in successfully");
+            dispatch(loginReducer(userState))
             navigate('/')
         }).catch((error)=>alert("Email or password is wrong please provide a valid email and password"))
         
