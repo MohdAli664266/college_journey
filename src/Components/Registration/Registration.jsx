@@ -1,83 +1,44 @@
 import React, { useState } from 'react';
-import { Client, Storage , ID} from "appwrite";
-import conf from '../../conf/conf';
-import authService from '../appwrite/auth';
+import database from '../appwrite/database';
 const Registration = () => {
+  
+  const [name, setName] = useState('')
+  const [year, setYear] = useState('')
+  const [course, setCourse] = useState('')
+  const [description, setDescription] = useState('')
 
-
-  const [formData, setFormData] = useState({
-    year: '',
-    course: '',
-    name: '',
-    id: '',
-    photo: '',
-    description: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const fileHandling = (e) =>{
-    console.log(e.target.file[0])
-  }
-
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => 
+  {
     e.preventDefault();
-    const client = new Client()
-      .setEndpoint(conf.appwriteUrl)
-      .setProject(conf.projectId);
-  
-    const storage = new Storage(client);
-  
-    const promise = storage.createFile(
-      conf.bucketId,
-      ID.unique(),
-      document.getElementById('photo').files[0]
-    );
-    promise.then(function (response) {
-      console.log(response); // Success
-      alert("Your registration has been completed successfully");
-    }, function (error) {
-        console.log(error); // Failure
-    });
+    const file = document.getElementById('photo').files[0];
+    await database.registration(name, year, course, file, description)
   };
-
   return (
-    <div className="max-w-md mx-auto my-5 bg-white p-4 rounded-3xl text-[#8aaaee] shadow-lg shadow-gray-950">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Registration Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="year" className="block text-xl font-medium mb-1">Year</label>
-          <input type="text" id="year" name="year" value={formData.year} onChange={handleChange} className="p-2 rounded-full outline-none shadow-sm shadow-gray-950 block w-full sm:text-sm" />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="course" className="block text-xl font-medium mb-1">Course</label>
-          <input type="text" id="course" name="course" value={formData.course} onChange={handleChange} className="p-2 rounded-full outline-none shadow-sm shadow-gray-950 block w-full sm:text-sm" />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-xl font-medium mb-1">Name</label>
-          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="p-2 rounded-full outline-none shadow-sm shadow-gray-950 block w-full sm:text-sm" />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="photo" className="block text-xl font-medium mb-1">Photo</label>
-          <input type="file" id="photo" name="photo" onChange={fileHandling} className="p-2 rounded-full outline-none shadow-sm shadow-gray-950 block w-full sm:text-sm" />
-        </div>
-
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-xl font-medium  mb-1">Description</label>
-          <textarea id="description" name="description" value={formData.description} onChange={handleChange} className="p-2 rounded-full outline-none shadow-sm shadow-gray-950 block w-full sm:text-sm" />
-        </div>
-        <div className='flex gap-3'>
-          <button type="reset" className="bg-[#88ccee] text-white py-2 px-4 rounded-full">Reset</button>
-          <button type="submit" className="bg-[#88ccee] text-white py-2 px-4 rounded-full">Submit</button>
-        </div>
-      </form>
-    </div>
+    <>
+            <div className="max-w-full h-auto py-16 flex justify-center items-center">
+                <div className="shadow-lg flex bg-[#fff] text-[#8aaaee] shadow-gray-950 rounded-3xl">
+                    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center h-auto border-3 sm:p-4  sm:gap-5 gap-3 w-full">
+                        <h1 className="text-xl sm:text-3xl px-5 py-2">Registration Form</h1>
+                        <div className='w-full'>
+                            <input className="shadow-md bg-transparent rounded-full sm:px-2 py-1 outline-none text-black w-full" name='year' type="number" placeholder='Enter the Year' value={year} onChange={(e)=>setYear(e.target.value)}/>
+                        </div>
+                        <div className='w-full'>
+                            <input className="shadow-md bg-transparent rounded-full sm:px-2 py-1 outline-none text-black w-full" name='course' type="text" placeholder='Enter the Course' value={course} onChange={(e)=>setCourse(e.target.value)}/>
+                        </div>
+                        <div className='w-full'>
+                            <input className="shadow-md bg-transparent rounded-full sm:px-2 py-1 text-black outline-none w-full" name='name' type="text" placeholder='Enter the batch name' value={name} onChange={(e)=>setName(e.target.value)}/>
+                        </div>
+                        <div className='w-full'>
+                            <textarea className="shadow-md bg-transparent rounded-full sm:px-2 py-1 text-black outline-none w-full" name='description' type="text" placeholder='Write something about the batch' value={description} onChange={(e)=>setDescription(e.target.value)}/>
+                        </div>
+                        <div>
+                            <input className="shadow-md bg-transparent rounded-full sm:px-2 py-1 text-black outline-none" type="file" id ='photo' name='photo'/>
+                        </div>
+                        <button type="submit" className="bg-[#8aaaee] rounded-full text-[#fff] px-10 my-2 sm:text-md text-xl">Registration</button>
+                    </form>
+                </div>
+            </div>
+        </>
   );
 };
 
