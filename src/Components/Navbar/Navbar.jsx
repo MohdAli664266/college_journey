@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import College_Journey_Logo from '../../assets/college_journey_logo.png';
 import authService from '../appwrite/auth';
 import {useSelector, useDispatch} from 'react-redux'
@@ -12,6 +12,7 @@ function Navbar() {
     const [toggle, setToggle] = useState(true)
     const [user, setUser] = useState(userState);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     authService.getCurrentUser().then((resp)=>
     {
@@ -24,6 +25,7 @@ function Navbar() {
             alert("You have logout successfully");
             dispatch(logoutReducer(userState))
             setUser(false);
+            navigate('/login')
         }).catch((error)=>alert("Sorry! something went wrong"));
     }
   return (

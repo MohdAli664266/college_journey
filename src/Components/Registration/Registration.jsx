@@ -32,7 +32,7 @@ const Registration = () => {
                             <textarea className="shadow-md bg-transparent rounded-full sm:px-2 py-1 text-black outline-none w-full" name='description' type="text" placeholder='Write something about the batch' value={description} onChange={(e)=>setDescription(e.target.value)}/>
                         </div>
                         <div>
-                            <input className="shadow-md bg-transparent rounded-full sm:px-2 py-1 text-black outline-none" type="file" id ='photo' name='photo'/>
+                            <input className="shadow-md bg-transparent rounded-full sm:px-2 py-1 text-black outline-none file:outline-none file:rounded-full file:text-gray-500 file:border-none file:cursor-pointer" type="file" id ='photo' name='photo'/>
                         </div>
                         <button type="submit" className="bg-[#8aaaee] rounded-full text-[#fff] px-10 my-2 sm:text-md text-xl">Registration</button>
                     </form>

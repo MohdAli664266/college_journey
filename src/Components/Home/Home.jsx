@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import database from '../appwrite/database';
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import HomeCards from './HomeCards';
 import BatcheCards from '../Batches/BatcheCards';
@@ -10,7 +11,17 @@ import Yashika from '../../assets/yashika.jpeg';
 
 function Home() {
     const colors = [{color:'#ff0f5b'}, {color:'#0f0'}, {color:'lime'}, {color:'#18fff3'}, {color:'#18fff3'}]
-
+    const [batchs, setBatch] = useState([])
+    const batch = async ()=>
+    {
+        await database.getAllBatches()
+        .then((res)=>
+        {
+            setBatch(res.documents)
+        })
+        .catch((error)=>console.log("console error"+error))
+    }
+    useEffect(()=>{batch()}, []);
     const details = [
         {
             img:Ali,
@@ -67,16 +78,15 @@ function Home() {
             </div>
         </div>
 
-
         {/* batches */}
         <div className='relative w-full font-extrabold flex flex-col p-4 bg-[#94b6ff] justify-center gap-4'>
             {/* <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 left-0 bg-[#ff0] rounded-tr-[100%]`}></div> */}
             <div className='text-2xl text-white font-bold px-4 py-2'><h1>Batches</h1></div>
             <div className='gap-4 p-4 flex lg:justify-center md:items-center justify-start overflow-x-auto'>
                         {
-                            colors.map(()=>
+                            batchs.map((batch)=>
 
-                                <BatcheCards />
+                                <BatcheCards batch={batch}/>
                             )
                         }
             </div>

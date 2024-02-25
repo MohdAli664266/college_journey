@@ -11,19 +11,20 @@ export class DatabaseClass
         this.client
         .setEndpoint(conf.appwriteUrl)
         .setProject(conf.projectId);
+        this.database =new Databases(this.client);
+        this.storage = new Storage(this.client)
     }
 
     async registration(name, year, course, file, description) 
     {
-        this.storage = new Storage(this.client)
-        await this.storage.createFile(
+        await this.storage.createFile
+        (
             conf.bucketId,
             ID.unique(),
             file
           ).then((uploaded)=>
           {
-            this.databases =new Databases(this.client);
-            this.databases.createDocument
+            this.database.createDocument
             (
                 conf.databaseId,
                 conf.collectionId,
@@ -35,8 +36,21 @@ export class DatabaseClass
                   course:course,
                   description:description,
                 }
-            ).then((res)=>alert("Your registration has been successfully")).catch((error)=>alert("Sorry! something went wrong"))
-          }).catch((error)=>alert("Sorry Image is not uploaded")) 
+            ).then((res)=>alert("Your registration has been successfully"))
+            .catch((error)=>alert("Sorry! something went wrong"))
+          }).catch((error)=>alert("Sorry Image is not uploaded")
+        ) 
+    }
+
+    async getAllBatches()
+    {
+      try
+      {
+        return await this.database.listDocuments(conf.databaseId, conf.collectionId)
+      }catch (error)
+      {
+        console.log("You have to login first ")
+      }
     }
 }
 const database = new DatabaseClass();
