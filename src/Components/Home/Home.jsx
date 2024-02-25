@@ -17,7 +17,7 @@ function Home() {
         await database.getAllBatches()
         .then((res)=>
         {
-            setBatch(res.documents)
+            setBatch(Array.from(res.documents))
         })
         .catch((error)=>console.log("console error"+error))
     }

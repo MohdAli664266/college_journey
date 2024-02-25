@@ -9,7 +9,7 @@ function Batch() {
         await database.getAllBatches()
         .then((res)=>
         {
-            setBatch(res.documents)
+            setBatch(Array.from(res.documents))
         })
         .catch((error)=>alert(error))
     }
