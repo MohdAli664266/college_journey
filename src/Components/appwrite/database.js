@@ -37,8 +37,16 @@ export class DatabaseClass
                   description:description,
                 }
             ).then((res)=>alert("Your registration has been successfully"))
-            .catch((error)=>alert("Sorry! something went wrong"))
-          }).catch((error)=>alert("Sorry Image is not uploaded")
+            .catch((error)=>
+            {
+              alert("Sorry! something went wrong");
+              console.log(error);
+            })
+          }).catch((error)=>
+          {
+            alert("Sorry Image is not uploaded");
+            console.log(error);
+          }
         ) 
     }
 

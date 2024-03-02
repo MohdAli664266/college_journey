@@ -26,7 +26,11 @@ function Navbar() {
             dispatch(logoutReducer(userState))
             setUser(false);
             navigate('/login')
-        }).catch((error)=>alert("Sorry! something went wrong"));
+        }).catch((error)=>
+        {
+            alert("Sorry! something went wrong");
+            console.log(error);
+        });
     }
   return (
     <>

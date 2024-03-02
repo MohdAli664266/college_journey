@@ -12,7 +12,6 @@ function Signup(){
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const userState = useSelector(state => state.userInfo.user);
 
     const createAcount = ()=>
     {
@@ -22,6 +21,7 @@ function Signup(){
             setName('')
             setPassword('')
             setPhone('')
+            const userState = useSelector(state => state.userInfo.user);
             dispatch(loginReducer(userState))
             alert("Thank you for signup")
             navigate('/')
