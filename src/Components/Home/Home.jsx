@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import database from '../appwrite/database';
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import HomeCards from './HomeCards';
 import BatcheCards from '../Batches/BatcheCards';
 import ProjectCard from '../Projects/ProjectCard';

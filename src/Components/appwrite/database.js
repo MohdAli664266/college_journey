@@ -49,7 +49,8 @@ export class DatabaseClass
         return await this.database.listDocuments(conf.databaseId, conf.collectionId)
       }catch (error)
       {
-        console.log("You have to login first ")
+        console.log("Get AllBatches function error")
+        console.log(error)
       }
     }
 }

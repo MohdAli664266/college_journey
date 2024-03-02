@@ -10,6 +10,8 @@ function Batch() {
         .then((res)=>
         {
             setBatch(res?.documents)
+            console.log("batch response is written below");
+            console.log(res)
         })
         .catch((error)=>alert(error))
     }
