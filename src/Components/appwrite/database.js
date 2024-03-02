@@ -61,6 +61,7 @@ export class DatabaseClass
     {
       try
       {
+        console.log(conf.collectionId);
         return await this.databases.listDocuments(conf.databaseId, conf.collectionId)
       }catch (error)
       {
