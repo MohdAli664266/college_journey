@@ -24,7 +24,7 @@ function Batch() {
             <div className='text-2xl text-white font-bold px-4 py-2'><h1>Batches</h1></div>
             <div className='gap-4 p-4 flex lg:justify-center md:items-center justify-start overflow-x-auto'>
                         {
-                            batchs.map((batch)=>
+                            batchs && batchs.map((batch)=>
                             <BatcheCards batch={batch}/>
                             )
                         }

@@ -17,7 +17,7 @@ function Home() {
         await database.getAllBatches()
         .then((res)=>
         {
-            setBatch(res.documents)
+            setBatch(res?.documents)
         })
         .catch((error)=>console.log("console error"+error))
     }
@@ -84,7 +84,7 @@ function Home() {
             <div className='text-2xl text-white font-bold px-4 py-2'><h1>Batches</h1></div>
             <div className='gap-4 p-4 flex lg:justify-center md:items-center justify-start overflow-x-auto'>
                         {
-                            batchs.map((batch)=>
+                            batchs && batchs.map((batch)=>
 
                                 <BatcheCards batch={batch}/>
                             )
