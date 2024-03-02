@@ -9,11 +9,13 @@ function Batch() {
         await database.getAllBatches()
         .then((res)=>
         {
-            setBatch(Array.from(res.documents))
+            setBatch(res?.documents)
         })
         .catch((error)=>alert(error))
     }
-    useEffect(()=>{batch()}, []);
+    useEffect(()=>{
+        batch();
+    }, []);
     
   return (
     <div>
@@ -23,8 +25,7 @@ function Batch() {
             <div className='gap-4 p-4 flex lg:justify-center md:items-center justify-start overflow-x-auto'>
                         {
                             batchs.map((batch)=>
-
-                                <BatcheCards batch={batch}/>
+                            <BatcheCards batch={batch}/>
                             )
                         }
             </div>
