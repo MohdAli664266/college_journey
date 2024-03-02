@@ -54,24 +54,42 @@ function Navbar() {
                 {/* Navbar items which display when medium or from greater device width will occure */}
                 <div className='hidden md:flex'>
                     <ul className='flex justify-center items-center gap-4 p-4 font-bold'>
-                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to='/'>Home </NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to='batches'>Batches </NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'projects'>Projects</NavLink></li>
-                        <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'registration'>Registration</NavLink></li>
+
+                        <NavLink to='/' className={({isActive})=>
+                        `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
+                        >Home</NavLink>
+
+
+                        <NavLink to='/batches' className={({isActive})=>
+                        `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
+                        >Batches</NavLink>
+
+                        <NavLink to='/projects' className={({isActive})=>
+                        `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
+                        >Projects</NavLink>
+
+                        <NavLink to='/registration' className={({isActive})=>
+                        `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
+                        >Registration</NavLink>
+                        
                         {
                             user ?
                             <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md' onClick={()=>logout()}>Logout</li>
                              :
-                             <li className='hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'login'>Login</NavLink></li>
+                             <NavLink to='/login' className={({isActive})=>
+                            `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
+                            >Login</NavLink>
                         }
 
                         {
                             user ?
                             <li className='hidden hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'signup'>Signup</NavLink></li>
                             :
-                            <li className='block hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'signup'>Signup</NavLink></li>
-                        }                  
+                            <NavLink to='/signup' className={({isActive})=>
+                            `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
+                            >Signup</NavLink>
 
+                        }                  
 
                     </ul>
                 </div>
