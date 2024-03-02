@@ -4,17 +4,41 @@ import conf from "../../conf/conf";
 export class DatabaseClass
 {
     client = new Client();
-    database;
+    databases;
     storage;
     constructor()
     {
         this.client
         .setEndpoint(conf.appwriteUrl)
         .setProject(conf.projectId);
-        this.database =new Databases(this.client);
+        this.databases =new Databases(this.client);
         this.storage = new Storage(this.client)
     }
 
+    async addData(name, year, course, file, description)
+    {
+      try
+      {
+        await this.databases.createDocument(conf.databaseId,
+          conf.collectionId,
+          ID.unique(),
+          {
+            imagePath:file,
+            name:name,
+            year:year,
+            course:course,
+            description:description,
+          }
+        ).then((resp)=>
+        {
+          alert("Registration success");
+        })
+      }catch (error)
+      {
+        alert("Sorry! document is not added");
+        console.log(error);
+      }
+    }
     async registration(name, year, course, file, description) 
     {
         await this.storage.createFile
@@ -24,24 +48,7 @@ export class DatabaseClass
             file
           ).then((uploaded)=>
           {
-            this.database.createDocument
-            (
-                conf.databaseId,
-                conf.collectionId,
-                ID.unique(),
-                {
-                  imagePath:uploaded.$id,
-                  name:name,
-                  year:year,
-                  course:course,
-                  description:description,
-                }
-            ).then((res)=>alert("Your registration has been successfully"))
-            .catch((error)=>
-            {
-              alert("Sorry! something went wrong");
-              console.log(error);
-            })
+            this.addData(name, year, course, uploaded.$id, description);
           }).catch((error)=>
           {
             alert("Sorry Image is not uploaded");
@@ -54,7 +61,7 @@ export class DatabaseClass
     {
       try
       {
-        return await this.database.listDocuments(conf.databaseId, conf.collectionId)
+        return await this.databases.listDocuments(conf.databaseId, conf.collectionId)
       }catch (error)
       {
         console.log("Get AllBatches function error")
