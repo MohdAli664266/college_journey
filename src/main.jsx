@@ -11,6 +11,7 @@ import Registration from './Components/Registration/Registration.jsx'
 import { Provider } from 'react-redux';
 import { store } from './Components/Store/Store.js'
 import Batch from './Components/Batches/Batch.jsx'
+import Admin from './Components/Admin/Admin.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path:'/batches',
         element:<Batch/>
+      },
+      {
+        path:'/admin_panel',
+        element:<Admin/>
       },
     ]
   },

@@ -80,17 +80,18 @@ function Navbar() {
                             `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
                             >Login</NavLink>
                         }
-
+                        
                         {
                             user ?
-                            <li className='hidden hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'signup'>Signup</NavLink></li>
+                            <li className='hidden hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'><NavLink to = 'profile'>Profile</NavLink></li>
                             :
                             <NavLink to='/signup' className={({isActive})=>
                             `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
                             >Signup</NavLink>
-
-                        }                  
-
+                        }  
+                        <NavLink to='/admin_panel' className={({isActive})=>
+                        `${isActive ? 'px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md' : 'hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md'}`}
+                        >Panel</NavLink>                
                     </ul>
                 </div>
             </div>
