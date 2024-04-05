@@ -18,8 +18,11 @@ export class AuthService{
     async creatAccount({email, password, name, phone})
     {
         try {
-            const userAccount = await this.account.create(ID.unique(), email, password, name, phone)
-            this.login({email, password})
+            const userAccount = await this.account.create(ID.unique(), email, password, name, phone);
+            const promise = await this.account.createVerification('http://localhost:5173/verification');
+            console.log("Promise content ", promise);
+            
+            // this.login({email, password})
             return userAccount;
         } catch (error) {
             console.log(error)
@@ -30,7 +33,7 @@ export class AuthService{
     {
         try
         {
-            const login = await this.account.createEmailSession(email, password);
+            const login = await this.account.createEmailPasswordSession(email, password);
             localStorage.setItem('sessionId', login.$id);
             return login;
         }catch(error)

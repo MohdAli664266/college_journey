@@ -25,14 +25,25 @@ function Signup(){
             setPassword('')
             setPhone('')
             const userState = useSelector(state => state.userInfo.user);
-            dispatch(loginReducer(userState))
+            dispatch(loginReducer(userState))  
             alert("Thank you for signup")
-            navigate('/')
-        }).catch((error)=>console.log(error))
+            navigate('/verification')
+        })
+        .catch((response)=>
+        {
+            authService.account.createVerification("http://localhost:5173/verification")
+            .then((response)=>
+                console.log('verification console',response))
+            .catch((error)=>console.log('verication error',error))
+        })
+        .catch((error)=>{
+            console.log(error)
+            setProcess('Signup')
+        })
     }
     return (
         <>
-            <div className="max-w-full h-auto py-16 flex justify-center items-center ">
+            <div className="max-w-full h-auto py-16 flex justify-center items-center relative top-8">
                 <div className="shadow-lg shadow-gray-950 flex bg-[#fff] text-[#8aaaee] rounded-3xl">
                     <form onSubmit={createAcount} className="flex flex-col justify-center items-center sm:max-w-xl h-auto border-3 sm:p-10  sm:gap-5 gap-2 max-w-md">
                         <h1 className="text-xl sm:text-3xl px-5 py-2">Signup Form</h1>

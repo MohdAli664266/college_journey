@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Ali from '../../assets/Mohd_Ali.jpeg';
 import conf from '../../conf/conf';
 function BatcheCards({batch}) { 
     const fileId = batch.imagePath;

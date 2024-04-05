@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { store } from './Components/Store/Store.js'
 import Batch from './Components/Batches/Batch.jsx'
 import Admin from './Components/Admin/Admin.jsx'
+import Verification from './Components/Signup/Verification.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path:'/signup',
         element:<Signup/>
+      },
+      {
+        path:'/verification',
+        element:<Verification/>
       },
       {
         path:'/registration',

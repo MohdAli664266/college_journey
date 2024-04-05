@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 function App() {
   return (
     <>
-      <Navbar />
+      <div className='fixed w-full z-10'><Navbar /></div>
       <Outlet />
       <Footer />
     </>
