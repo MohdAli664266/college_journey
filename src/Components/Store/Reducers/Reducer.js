@@ -4,6 +4,7 @@ const initialState = {
     userInfo:{
         user:false,
         userImg:'',
+        admin: false
     }
 }
 const userSlice = createSlice({
@@ -13,13 +14,18 @@ const userSlice = createSlice({
     {
         loginReducer: (state, action) =>
         {
-            state.userInfo.user = !action.payload
+            state.userInfo.user = action.payload
         },
 
         logoutReducer: (state, action) =>
         {
-            state.userInfo.user = !action.payload
+            state.userInfo.user = action.payload
         },
+
+        setAdmin: (state, action)=>
+        {
+            state.userInfo.admin = action.payload
+        }
 
     }
 

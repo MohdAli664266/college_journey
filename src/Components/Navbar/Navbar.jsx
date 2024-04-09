@@ -6,6 +6,7 @@ import College_Journey_Logo from '../../assets/college_journey_logo.png';
 import authService from '../appwrite/auth';
 import {useSelector, useDispatch} from 'react-redux'
 import { logoutReducer } from '../Store/Reducers/Reducer';
+import toast from 'react-hot-toast';
 
 function Navbar() {
     const userState = useSelector(state => state.userInfo.user)
@@ -22,14 +23,14 @@ function Navbar() {
     const logout = ()=>
     {
         authService.logout().then((response)=>{
-            alert("You have logout successfully");
-            dispatch(logoutReducer(userState))
+            toast.success("You have logged out successfully");
+            dispatch(logoutReducer(false));
+            dispatch(setAdmin(false));
             setUser(false);
             navigate('/login')
         }).catch((error)=>
         {
-            alert("Sorry! something went wrong");
-            console.log(error);
+            toast.error("Sorry! something went wrong");
         });
     }
   return (

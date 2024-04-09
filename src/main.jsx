@@ -13,6 +13,7 @@ import { store } from './Components/Store/Store.js'
 import Batch from './Components/Batches/Batch.jsx'
 import Admin from './Components/Admin/Admin.jsx'
 import Verification from './Components/Signup/Verification.jsx'
+import {Toaster} from 'react-hot-toast';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -63,6 +64,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
     <RouterProvider router={router} />
+    <Toaster />
     </Provider>
   </React.StrictMode>,
 )

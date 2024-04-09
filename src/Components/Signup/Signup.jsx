@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../appwrite/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loginReducer } from "../Store/Reducers/Reducer";
+import toast from 'react-hot-toast';
 function Signup(){
 
     const [name, setName] = useState('');
@@ -11,10 +12,11 @@ function Signup(){
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const userState = useSelector(state => state.userInfo.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const createAcount =async (e)=>
+    const createAcount = async (e)=>
     {
         e.preventDefault();
         setProcess('processing..')
@@ -24,20 +26,11 @@ function Signup(){
             setName('')
             setPassword('')
             setPhone('')
-            const userState = useSelector(state => state.userInfo.user);
-            dispatch(loginReducer(userState))  
-            alert("Thank you for signup")
-            navigate('/verification')
-        })
-        .catch((response)=>
-        {
-            authService.account.createVerification("http://localhost:5173/verification")
-            .then((response)=>
-                console.log('verification console',response))
-            .catch((error)=>console.log('verication error',error))
+            toast.success("You have signed up successfully");
+            navigate('/login')
         })
         .catch((error)=>{
-            console.log(error)
+            toast.error("Something went wrong");
             setProcess('Signup')
         })
     }

@@ -1,5 +1,6 @@
 import { Client, Databases, Storage, ID } from "appwrite";
 import conf from "../../conf/conf";
+import toast from 'react-hot-toast';
 
 export class DatabaseClass
 {
@@ -31,12 +32,11 @@ export class DatabaseClass
           }
         ).then((resp)=>
         {
-          alert("Registration success");
+          toast.success("Registration success");
         })
       }catch (error)
       {
-        alert("Sorry! document is not added");
-        console.log(error);
+        toast.error("Error in registration");
       }
     }
     async registration(name, year, course, file, description) 
@@ -51,8 +51,7 @@ export class DatabaseClass
             this.addData(name, year, course, uploaded.$id, description);
           }).catch((error)=>
           {
-            alert("Sorry Image is not uploaded");
-            console.log(error);
+            toast.error("Sorry Image is not uploaded");
           }
         ) 
     }
@@ -64,8 +63,7 @@ export class DatabaseClass
         return await this.databases.listDocuments(conf.databaseId, conf.collectionId)
       }catch (error)
       {
-        console.log("Get AllBatches function error")
-        console.log(error)
+        throw error;
       }
     }
 }
