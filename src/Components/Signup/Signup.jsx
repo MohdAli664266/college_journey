@@ -39,7 +39,7 @@ function Signup(){
             <div className="max-w-full h-auto py-16 flex justify-center items-center relative top-8">
                 <div className="shadow-lg shadow-gray-950 flex bg-[#fff] text-[#8aaaee] rounded-3xl">
                     <form onSubmit={createAcount} className="flex flex-col justify-center items-center sm:max-w-xl h-auto border-3 sm:p-10  sm:gap-5 gap-2 max-w-md">
-                        <h1 className="text-xl sm:text-3xl px-5 py-2">Signup Form</h1>
+                        <h1 className="text-xl sm:text-3xl px-5 py-2 font-bold">Signup Form</h1>
                         <div>
                             <input className="shadow-md bg-transparent sm:px-2 py-1 outline-none text-black rounded-full" type="text" placeholder='Enter your name' value={name} onChange={(e)=>setName(e.target.value)} required/>
                         </div>

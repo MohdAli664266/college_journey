@@ -2,9 +2,10 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../appwrite/auth.js";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loginReducer } from "../Store/Reducers/Reducer";
+import { useDispatch} from "react-redux";
+import { loginReducer, setAdmin } from "../Store/Reducers/Reducer";
 import toast from "react-hot-toast";
+import admin from "../Admin/admin.js";
 
 function Login() {
   const [process, setProcess] = useState("Login");
@@ -13,24 +14,39 @@ function Login() {
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userState = useSelector((state) => state.userInfo.user);
   const login = async (e) => {
     e.preventDefault();
     setProcess("processing..");
-    console.log(authService)
-    await authService.login({ email, password })
-      .then((response) => {
-        setEmail("");
-        setPassword("");
-        dispatch(loginReducer(true));
-        dispatch(setAdmin(true));
-        toast.success("Logged In Successfully");
-        navigate("/");
-      })
-      .catch((error) => {
-        setProcess("Login");
-        toast.error("Invalid email or password! Try Again.");
-      });
+    if(isAdmin && admin.email===email && admin.password==password)
+    {
+      await authService.login({ email, password })
+        .then((response) => {
+          setEmail("");
+          setPassword("");
+          dispatch(loginReducer(true));
+          dispatch(setAdmin(true));
+          toast.success("Admin Logged In Successfully");
+          navigate("/");
+        })
+        .catch((error) => {
+          setProcess("Login");
+          toast.error("Invalid email or password! Try Again.");
+        });
+    }else
+    {
+      await authService.login({ email, password })
+        .then((response) => {
+          setEmail("");
+          setPassword("");
+          dispatch(loginReducer(true));
+          toast.success("Logged In Successfully");
+          navigate("/");
+        })
+        .catch((error) => {
+          setProcess("Login");
+          toast.error("Invalid email or password! Try Again.");
+        });
+    }
   };
   return (
     <>
@@ -40,10 +56,7 @@ function Login() {
             onSubmit={login}
             className="flex flex-col justify-center items-center sm:max-w-xl h-auto border-3 sm:p-10  sm:gap-10 gap-3 max-w-md"
           >
-            <div className="flex justify-center items-center gap-4 text-2xl px-2 lg:text-4xl text-white bg-yellow-400">
-              <button className="rounded-full text-center px-2" onClick={()=>setIsAdmin(false)}>Login</button>
-              <button className="rounded-full text-center px-2" onClick={()=>setIsAdmin(true)}>Admin</button>
-            </div>
+            <h1 className="text-xl sm:text-3xl px-5 py-2 font-bold">Login Form</h1>
             <div>
               <input
                 className="shadow-md bg-transparent rounded-full sm:px-2 py-1 outline-none text-black"
@@ -62,6 +75,16 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+              />
+            </div>
+
+            <div className="flex justify-center items-center gap-2">
+              <label className="text-sm">Are you admin?</label>
+              <input
+                className="shadow-md bg-transparent rounded-full sm:px-2 py-1 text-black outline-none"
+                type="checkbox"
+                value={isAdmin}
+                onChange={(e) => setIsAdmin(e.target.value)}
               />
             </div>
             <p className="px-2">
