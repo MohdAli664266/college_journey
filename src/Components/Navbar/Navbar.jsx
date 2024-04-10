@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -9,9 +9,9 @@ import { logoutReducer, setAdmin } from "../Store/Reducers/Reducer";
 import toast from "react-hot-toast";
 
 function Navbar() {
-  const userState = useSelector((state) => state.userInfo.user);
+  const userState = useSelector((state) => state.userInfo);
   const [toggle, setToggle] = useState(true);
-  const [user, setUser] = useState(userState);
+  const [user, setUser] = useState(userState.user);
   const [isAdmin, setIsAdmin] = useState(userState.admin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ function Navbar() {
         dispatch(logoutReducer(false));
         dispatch(setAdmin(false));
         setUser(false);
+        setIsAdmin(false);
         navigate("/login");
       })
       .catch((error) => {
