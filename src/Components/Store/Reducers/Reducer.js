@@ -4,6 +4,9 @@ const initialState = {
     userInfo:{
         user:false,
         userImg:'',
+        batch: {},
+        batchImg:'',
+        loggedInUser: {},
         admin: false
     }
 }
@@ -25,10 +28,20 @@ const userSlice = createSlice({
         setAdmin: (state, action)=>
         {
             state.userInfo.admin = action.payload
+        },
+
+        setLoggedInUser: (state, action)=>
+        {
+            state.userInfo.loggedInUser = action.payload
+        },
+
+        setBatch: (state, action)=>
+        {
+            state.userInfo.batch = action.payload
         }
 
     }
 
 })
-export const {loginReducer, logoutReducer, setAdmin} = userSlice.actions
+export const {loginReducer, logoutReducer, setAdmin, setBatch, setLoggedInUser} = userSlice.actions
 export default userSlice.reducer;

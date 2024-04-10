@@ -32,12 +32,12 @@ function Home() {
     {
       img: Ali,
       name: "Mohd Ali",
-      profession: "Web Developer",
+      profession: "Full Stack Developver",
     },
     {
       img: Anil,
       name: "Anil Kumar",
-      profession: "Full Stack Developver",
+      profession: "Web Developer",
     },
     { img: Abbas, name: "Mohd Abbas", profession: "Full Stack Developer" },
     { img: Yashika, name: "Yashika Gupta", profession: "Backend Developer" },

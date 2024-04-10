@@ -5,7 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import College_Journey_Logo from "../../assets/college_journey_logo.png";
 import authService from "../appwrite/auth";
 import { useSelector, useDispatch } from "react-redux";
-import { logoutReducer, setAdmin } from "../Store/Reducers/Reducer";
+import { logoutReducer, setAdmin, setLoggedInUser } from "../Store/Reducers/Reducer";
 import toast from "react-hot-toast";
 
 function Navbar() {
@@ -28,6 +28,7 @@ function Navbar() {
         toast.success("You have logged out successfully");
         dispatch(logoutReducer(false));
         dispatch(setAdmin(false));
+        dispatch(setLoggedInUser({}));
         setUser(false);
         setIsAdmin(false);
         navigate("/login");

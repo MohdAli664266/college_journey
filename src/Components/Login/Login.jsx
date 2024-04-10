@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import authService from "../appwrite/auth.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
-import { loginReducer, setAdmin } from "../Store/Reducers/Reducer";
+import { loginReducer, setAdmin, setLoggedInUser } from "../Store/Reducers/Reducer";
 import toast from "react-hot-toast";
 import admin from "../Admin/admin.js";
 
@@ -25,6 +25,7 @@ function Login() {
           setPassword("");
           dispatch(loginReducer(true));
           dispatch(setAdmin(true));
+          dispatch(setLoggedInUser(response));
           toast.success("Admin Logged In Successfully");
           navigate("/");
         })
@@ -39,6 +40,7 @@ function Login() {
           setEmail("");
           setPassword("");
           dispatch(loginReducer(true));
+          dispatch(setLoggedInUser(response));
           toast.success("Logged In Successfully");
           navigate("/");
         })

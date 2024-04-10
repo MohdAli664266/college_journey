@@ -14,6 +14,7 @@ import Batch from './Components/Batches/Batch.jsx'
 import Admin from './Components/Admin/Admin.jsx'
 import Verification from './Components/Signup/Verification.jsx'
 import {Toaster} from 'react-hot-toast';
+import BatchInfo from './Components/Batches/BatchInfo.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path:'/batches',
         element:<Batch/>
+      },
+      {
+        path:'/batchInfo',
+        element:<BatchInfo/>
       },
       {
         path:'/admin_panel',
