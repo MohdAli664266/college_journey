@@ -2,10 +2,16 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import authService from "../appwrite/auth.js";
 import { useNavigate } from "react-router-dom";
-import { useDispatch} from "react-redux";
-import { loginReducer, setAdmin, setLoggedInUser } from "../Store/Reducers/Reducer";
+import { useDispatch } from "react-redux";
+import {
+  loginReducer,
+  setAdmin,
+  setLoggedInUser,
+  setStudentInfo,
+} from "../Store/Reducers/Reducer";
 import toast from "react-hot-toast";
 import admin from "../Admin/admin.js";
+import database from "../appwrite/database.js";
 
 function Login() {
   const [process, setProcess] = useState("Login");
@@ -17,9 +23,9 @@ function Login() {
   const login = async (e) => {
     e.preventDefault();
     setProcess("processing..");
-    if(isAdmin && admin.email===email && admin.password==password)
-    {
-      await authService.login({ email, password })
+    if (isAdmin && admin.email === email && admin.password == password) {
+      await authService
+        .login({ email, password })
         .then((response) => {
           setEmail("");
           setPassword("");
@@ -33,14 +39,24 @@ function Login() {
           setProcess("Login");
           toast.error("Invalid email or password! Try Again.");
         });
-    }else
-    {
-      await authService.login({ email, password })
+    } else {
+      await authService
+        .login({ email, password })
         .then((response) => {
           setEmail("");
           setPassword("");
           dispatch(loginReducer(true));
           dispatch(setLoggedInUser(response));
+          database.getStudent(response.userId)
+          .then((res)=>{
+            if(res.documents && res.documents.length > 0)
+            {
+              dispatch(setStudentInfo(res.documents[0]));
+            }else
+            {
+              dispatch(setStudentInfo({}));
+            }
+          });
           toast.success("Logged In Successfully");
           navigate("/");
         })
@@ -58,7 +74,9 @@ function Login() {
             onSubmit={login}
             className="flex flex-col justify-center items-center sm:max-w-xl h-auto border-3 sm:p-10  sm:gap-10 gap-3 max-w-md"
           >
-            <h1 className="text-xl sm:text-3xl px-5 py-2 font-bold">Login Form</h1>
+            <h1 className="text-xl sm:text-3xl px-5 py-2 font-bold">
+              Login Form
+            </h1>
             <div>
               <input
                 className="shadow-md bg-transparent rounded-full sm:px-2 py-1 outline-none text-black"

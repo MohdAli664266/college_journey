@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 function HomeCards({detail}) { 
   return (
@@ -13,7 +14,9 @@ function HomeCards({detail}) {
                 <hr className={`bg-white border-1 border-[#fff] w-full`} />
                 <div className='w-full flex flex-col justify-center items-center gap-5'>
                     <p className={`text-white mx-1 font-thin`}>{detail.profession}</p>
-                    <button className={`bg-white md:px-4 px-1 sm:text-lg hover:translate-y-0.5 duration-200`}><a href="https://react-website-seven-lovat.vercel.app" target='_blank'>Read more</a></button>
+                    <button className={`bg-white md:px-4 px-1 sm:text-lg hover:translate-y-0.5 duration-200`}>
+                        <NavLink to = 'developer'>Read more</NavLink>
+                    </button>
                 </div>
             </div>
         </div>

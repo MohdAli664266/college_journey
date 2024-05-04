@@ -8,6 +8,9 @@ import Signup from './Components/Signup/Signup.jsx';
 import './index.css'
 import Home from './Components/Home/Home.jsx';
 import Registration from './Components/Registration/Registration.jsx'
+import StudentRegistration from './Components/Registration/StudentRegistration.jsx';
+import StudentInfo from './Components/Registration/StudentInfo.jsx';
+import DeveloperProfile from './Components/Developer/Developer.jsx'
 import { Provider } from 'react-redux';
 import { store } from './Components/Store/Store.js'
 import Batch from './Components/Batches/Batch.jsx'
@@ -29,6 +32,10 @@ const router = createBrowserRouter([
         ]
       },
       {
+        path:'/developer',
+        element:<DeveloperProfile/>
+      },
+      {
         path:'/login',
         element:<Login/>
       },
@@ -43,6 +50,14 @@ const router = createBrowserRouter([
       {
         path:'/registration',
         element:<Registration/>
+      },
+      {
+        path:'/student_reg',
+        element:<StudentRegistration/>
+      },
+      {
+        path:'/student_info',
+        element:<StudentInfo/>
       },
       {
         path:'/batches',

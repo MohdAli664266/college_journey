@@ -18,12 +18,12 @@ function Batch() {
 
   return (
     <div>
-      <div className="flex justify-center items-center p-4 flex-col gap-2">
+      <div className="flex justify-center items-center pt-10 flex-col gap-2">
         <div className="w-full font-extrabold flex flex-col p-4 bg-[#94b6ff] justify-center gap-4 mt-8">
           <div className="text-2xl text-white font-bold px-4 py-2">
             <h1>Batches</h1>
           </div>
-          <div className="gap-4 p-4 flex overflow-x-auto scrollbar-hide">
+          <div className="gap-4 p-4 grid lg:grid-cols-5 sm:grid-cols-4 grid-cols-2 scrollbar-hide">
             {batchs && batchs.map((batch) => 
                 <div key={batch.$id}><BatcheCards batch={batch} /></div>)}
           </div>

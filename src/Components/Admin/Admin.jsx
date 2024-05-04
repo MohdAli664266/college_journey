@@ -29,7 +29,7 @@ function Admin() {
     validation();
   }, []);
   return (
-    <div className="grid grid-cols-10 mb-4 gap-2 mt-4">
+    <div className="grid grid-cols-10 mb-4 gap-2 py-20">
       <div className="col-span-2 text-white text-center p-4 bg-[#8aaeee]">
         <div className=" mb-4 ">
           <h1 className="text-xl font-bold cursor-pointer">Admin Panel</h1>

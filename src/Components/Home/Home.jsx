@@ -83,7 +83,7 @@ function Home() {
 
       {/* batches */}
       <div className="relative w-full font-extrabold flex flex-col p-4 bg-[#94b6ff] justify-center gap-4 ">
-        {/* <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 left-0 bg-[#ff0] rounded-tr-[100%]`}></div> */}
+        {/* <div className={`absolute lg:w-[180px] lg:h-[180px] w-[100px] h-[100px]  bottom-0 left-0 bg-[#ff0] rounded-tr-[100%] #94b6ff`}></div> */}
         <div className="text-2xl text-white font-bold px-4 py-2">
           <h1>Batches</h1>
         </div>
