@@ -30,7 +30,7 @@ function BatchInfo() {
         dispatch(setBatchStudents(response.documents));
         setAllStudent(response.documents);
       })
-      .catch((error) => console.log(error));
+      .catch((error)=>console.log(error));      
   });
 
   const getAllPost =async ()=>
@@ -39,12 +39,13 @@ function BatchInfo() {
       .then((response) => {
         setAllPost(response.documents);
       })
-      .catch((error) => console.log(error));
+      .catch((error)=>console.log(error));
+      
     }
   useEffect(() => {
     getAllPost();
     getAllStudent();
-  }, [allStudent]);
+  }, [setAllStudent, setAllPost]);
 
   return (
     <div className="flex flex-col justify-center items-center pt-10">
@@ -86,12 +87,12 @@ function BatchInfo() {
           </p>
         </div>
       </div>
-      <div className="text-4xl font-bold w-full pl-10 p-4 bg-[#55DB89]"><h1>All Posts</h1></div>
-      <div className="w-full px-10">
+      <div className="text-4xl font-bold w-full pl-10 p-4 text-center bg-[#55bedb]"><h1>All Posts</h1></div>
+      <div className="w-full px-10 bg-[#6894E9] flex flex-col gap-4 pb-4">
         {
-          allPost && allPost.map((post)=>
+          allPost && allPost.map((post, index)=>
           <div key={post.$id}>
-            <PostCard post={post} />
+            <PostCard post={post} index={index} />
           </div>)
         }
       </div>
