@@ -1,6 +1,17 @@
 import React from "react";
 import imageUrl from "../../assets/Mohd_Ali.jpeg";
-function StudentCard() {
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setStudentInfo } from "../Store/Reducers/Reducer";
+function StudentCard({student}) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const sendStudentInfo = ()=>
+    {
+      dispatch(setStudentInfo(student));
+      navigate("/student_Info");
+    }
   return (
     <div className="relative flex md:gap-4 backdrop-blur-sm">
       <div className="relative md:w-[210px] w-[150px] flex flex-col justify-center items-center shadow-md shadow-gray-950 md:gap-5 gap-1">
@@ -12,25 +23,25 @@ function StudentCard() {
           />
         </div>
         <div className="w-full flex flex-col px-2 sm:gap-2 gap-1 mb-2">
-          <div className="flex bg-[#40ff00]">
+          <div className="flex bg-[#9B5CEF]">
             <h1 className="font-bold">Name:</h1>
-            <p className="text-[#fff] mx-1 font-thin">Mohd Ali</p>
+            <p className="text-[#fff] mx-1 font-thin">{student.name}</p>
           </div>
-          <div className="flex bg-[#40ff00]">
+          <div className="flex">
             <h1 className="font-bold">Course:</h1>
-            <p className="text-[#fff] mx-1 font-thin">B.Tech</p>
+            <p className="text-[#fff] mx-1 font-thin">{student.courseName}</p>
           </div>
           <div className="flex">
             <h1 className="font-bold">City:</h1>
-            <p className="text-[#fff] mx-1 font-thin">Moradabad</p>
+            <p className="text-[#fff] mx-1 font-thin">{student.city}</p>
           </div>
           <div className="flex">
             <h1 className="font-bold">State:</h1>
-            <p className="text-[#fff] mx-1 font-thin">Uttar Pradesh</p>
+            <p className="text-[#fff] mx-1 font-thin">{student.state}</p>
           </div>
 
           <hr className="bg-transparent border-1 border-[#fff] w-full" />
-          <button className="bg-transparent md:px-4 px-1 sm:text-lg hover:translate-y-0.5 duration-200 text-white font-thin">
+          <button className="bg-transparent md:px-4 px-1 sm:text-lg hover:translate-y-0.5 duration-200 text-white font-thin" onClick={sendStudentInfo}>
             Read more
           </button>
         </div>

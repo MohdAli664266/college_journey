@@ -25,16 +25,16 @@ function BatchInfo() {
       .then((response) => 
       {
         // setAllStudent(response.documents);
-        // dispatch(setBatchStudents(response.documents));
+        dispatch(setBatchStudents(response.documents));
       })
       .catch((error) => console.log(error));
   });
   useEffect(() => {
     getAllStudent();
-  }, [getAllStudent]);
+  }, [allStudent]);
 
   return (
-    <div className="flex flex-col justify-center items-center py-10">
+    <div className="flex flex-col justify-center items-center pt-10">
       <div className="container mx-auto flex flex-col lg:flex-row md:justify-between justify-center items-center lg:p-10 overflow-hidden">
         <div className="w-1/2 mr-4 mt-14">
           <div className="max-h-full overflow-hidden">
@@ -73,7 +73,8 @@ function BatchInfo() {
           </p>
         </div>
       </div>
-      <div className="mt-4 flex gap-4 overflow-x-auto scrollbar-hide p-4">
+      <div className="text-4xl font-bold w-full text-center p-4 bg-[#55DB89]"><h1>All Students</h1></div>
+      <div className="w-full flex gap-4 overflow-x-auto scrollbar-hide p-4 px-10 bg-[#55DB89]">
       {
         allStudent && allStudent.map((student, index)=>
         <div key={student.$id}>
