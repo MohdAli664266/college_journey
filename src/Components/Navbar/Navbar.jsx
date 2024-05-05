@@ -1,11 +1,16 @@
-import React, {useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router-dom";
 import College_Journey_Logo from "../../assets/college_journey_logo.png";
 import authService from "../appwrite/auth";
 import { useSelector, useDispatch } from "react-redux";
-import { logoutReducer, setAdmin, setLoggedInUser, setStudentInfo } from "../Store/Reducers/Reducer";
+import {
+  logoutReducer,
+  setAdmin,
+  setLoggedInUser,
+  setStudentInfo,
+} from "../Store/Reducers/Reducer";
 import toast from "react-hot-toast";
 
 function Navbar() {
@@ -17,16 +22,14 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const getUser = useCallback(()=>
-  {
+  const getUser = useCallback(() => {
     authService.getCurrentUser().then((resp) => {
       setUser(userState.user);
       setIsAdmin(userState.admin);
     });
-  })
+  });
 
-  useEffect(()=>getUser(),[getUser])
-
+  useEffect(() => getUser(), [getUser]);
 
   const logout = () => {
     authService
@@ -109,8 +112,7 @@ function Navbar() {
                 Projects
               </NavLink>
 
-              {
-                isAdmin &&
+              {isAdmin && (
                 <NavLink
                   to="/registration"
                   className={({ isActive }) =>
@@ -123,7 +125,7 @@ function Navbar() {
                 >
                   Registration
                 </NavLink>
-              }
+              )}
 
               {user ? (
                 <li
@@ -165,51 +167,64 @@ function Navbar() {
                   Signup
                 </NavLink>
               )}
-              {
-                isAdmin &&
+              {isAdmin && (
                 <NavLink
-                to="/admin_panel"
-                className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? "px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md"
-                      : "hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md"
-                  }`
-                }
-              >
-                Panel
-              </NavLink>
-              }
-              {
-                user &&
+                  to="/admin_panel"
+                  className={({ isActive }) =>
+                    `${
+                      isActive
+                        ? "px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md"
+                        : "hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md"
+                    }`
+                  }
+                >
+                  Panel
+                </NavLink>
+              )}
+              {user && (
                 <NavLink
-                to="/student_reg"
-                className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? "px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md"
-                      : "hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md"
-                  }`
-                }
-              >
-                StudentRegistration
-              </NavLink>
-              }
-              {
-                user && Object.keys(studentInfo).length !== 0 &&
+                  to="/student_reg"
+                  className={({ isActive }) =>
+                    `${
+                      isActive
+                        ? "px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md"
+                        : "hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md"
+                    }`
+                  }
+                >
+                  StudentRegistration
+                </NavLink>
+              )}
+
+              {user && Object.keys(studentInfo).length !== 0 && (
                 <NavLink
-                to="/student_info"
-                className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? "px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md"
-                      : "hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md"
-                  }`
-                }
-              >
-                Profile
-              </NavLink>
-              }
+                  to="/student_post"
+                  className={({ isActive }) =>
+                    `${
+                      isActive
+                        ? "px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md"
+                        : "hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md"
+                    }`
+                  }
+                >
+                  Post
+                </NavLink>
+              )}
+
+              {user && Object.keys(studentInfo).length !== 0 && (
+                <NavLink
+                  to="/student_info"
+                  className={({ isActive }) =>
+                    `${
+                      isActive
+                        ? "px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md"
+                        : "hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md"
+                    }`
+                  }
+                >
+                  Profile
+                </NavLink>
+              )}
             </ul>
           </div>
         </div>

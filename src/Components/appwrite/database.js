@@ -39,6 +39,62 @@ export class DatabaseClass
         toast.error("Error in registration");
       }
     }
+    async addPost(obj)
+    {
+      try
+      {
+        await this.databases.createDocument(conf.databaseId,
+          conf.postId,
+          ID.unique(),
+          {
+            batchId:obj.batchId,
+            studentId:obj.studentId,
+            name:obj.name,
+            heading:obj.heading,
+            description:obj.description,
+            imagePath:obj.imagePath,
+          }
+        ).then((resp)=>
+        {
+          toast.success("Posted successfully");
+        })
+      }catch (error)
+      {
+        toast.error("Error in registration");
+      }
+    }
+
+    async post(obj) 
+    {
+        await this.storage.createFile
+        (
+            conf.bucketId,
+            ID.unique(),
+            obj.imagePath
+          ).then((uploaded)=>
+          {
+            obj.imagePath = uploaded.$id;
+            this.addPost(obj);
+          }).catch((error)=>
+          {
+            toast.error("Sorry Image is not uploaded");
+          }
+        ) 
+    }
+
+    async getAllPost(batchId)
+    {
+      try
+      {
+        return await this.databases.listDocuments(conf.databaseId, conf.postId,
+        [
+          Query.equal("batchId", [batchId])
+        ]);
+      }catch (error)
+      {
+        throw error;
+      }
+    }
 
     async addStudent(obj)
     {
@@ -90,6 +146,7 @@ export class DatabaseClass
           }
         ) 
     }
+
 
     async getAllBatches()
     {

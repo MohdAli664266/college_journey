@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import database from "../appwrite/database";
 import StudentCard from "./StudentCard";
 import { setBatchStudents } from "../Store/Reducers/Reducer";
+import PostCard from "../Post/PostCard";
 
 function BatchInfo() {
   const batch = useSelector((state) => state.userInfo.batch);
@@ -16,20 +17,32 @@ function BatchInfo() {
     fileId +
     "/view?project=" +
     conf.projectId;
+
   const batchStudents = useSelector((state)=>state.userInfo.batchStudents);
   const [allStudent, setAllStudent] = useState(batchStudents);
+  const [allPost, setAllPost] = useState([]);
   const dispatch = useDispatch();
   const getAllStudent = useCallback(() => {
     database
       .getAllBatchStudent(batchId)
       .then((response) => 
       {
-        // setAllStudent(response.documents);
         dispatch(setBatchStudents(response.documents));
+        setAllStudent(response.documents);
       })
       .catch((error) => console.log(error));
   });
+
+  const getAllPost =async ()=>
+    {
+      await database.getAllPost(batchId)
+      .then((response) => {
+        setAllPost(response.documents);
+      })
+      .catch((error) => console.log(error));
+    }
   useEffect(() => {
+    getAllPost();
     getAllStudent();
   }, [allStudent]);
 
@@ -72,6 +85,15 @@ function BatchInfo() {
             Aenean ut arcu eget ligula dapibus viverra
           </p>
         </div>
+      </div>
+      <div className="text-4xl font-bold w-full pl-10 p-4 bg-[#55DB89]"><h1>All Posts</h1></div>
+      <div className="w-full px-10">
+        {
+          allPost && allPost.map((post)=>
+          <div key={post.$id}>
+            <PostCard post={post} />
+          </div>)
+        }
       </div>
       <div className="text-4xl font-bold w-full text-center p-4 bg-[#55DB89]"><h1>All Students</h1></div>
       <div className="w-full flex gap-4 overflow-x-auto scrollbar-hide p-4 px-10 bg-[#55DB89]">
