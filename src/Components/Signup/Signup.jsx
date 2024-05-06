@@ -7,6 +7,7 @@ import { loginReducer } from "../Store/Reducers/Reducer";
 import toast from 'react-hot-toast';
 function Signup(){
 
+    const [disabled, setDisabled] = useState(false);
     const [name, setName] = useState('');
     const [process, setProcess] = useState('Signup');
     const [phone, setPhone] = useState('');
@@ -19,6 +20,7 @@ function Signup(){
     const createAcount = async (e)=>
     {
         e.preventDefault();
+        setDisabled(true);
         setProcess('processing..')
         await authService.creatAccount({email, password, name, phone})
         .then((response)=>{
@@ -31,7 +33,8 @@ function Signup(){
         })
         .catch((error)=>{
             toast.error("Something went wrong");
-            setProcess('Signup')
+            setProcess('Signup');
+            setDisabled(false);
         })
     }
     return (
@@ -53,7 +56,7 @@ function Signup(){
                             <input className="shadow-md bg-transparent sm:px-2 py-1 text-black outline-none rounded-full" type="password" placeholder='Enter the Password' value={password} onChange={(e)=>setPassword(e.target.value)} required/>
                         </div>
                         <p className="px-2">If you are existing user then? <NavLink to="../login" className="underline">Login</NavLink></p>
-                        <button type="submit" className="bg-[#8aaaee] text-[#fff] px-10 my-2 text-md rounded-full">{process}</button>
+                        <button type="submit" disabled={disabled} className="bg-[#8aaaee] text-[#fff] px-10 my-2 text-md rounded-full">{process}</button>
                     </form>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import database from "../appwrite/database";
 import toast from "react-hot-toast";
 function StudentPost() {
+  const [disabled, setDisabled] = useState(false);
   const [process, setProcess] = useState("Post");
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
@@ -22,6 +23,7 @@ function StudentPost() {
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisabled(true);
     setProcess("processing..");
     const file = document.getElementById("photo").files[0];
     const obj = {
@@ -36,7 +38,8 @@ function StudentPost() {
       .post(obj)
       .then((res) => {
         navigate("/batchInfo");
-      });
+      })
+      .catch((error)=>setDisabled(false))
   };
   return (
     <>
@@ -80,6 +83,7 @@ function StudentPost() {
             </div>
             <button
               type="submit"
+              disabled={true}
               className="bg-[#8aaaee] rounded-full text-[#fff] px-10 my-2 sm:text-md text-xl"
             >
               {process}

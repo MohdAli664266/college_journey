@@ -87,8 +87,8 @@ function BatchInfo() {
           </p>
         </div>
       </div>
-      <div className="text-4xl font-bold w-full pl-10 p-4 text-center bg-[#55bedb]"><h1>All Posts</h1></div>
-      <div className="w-full px-10 bg-[#6894E9] flex flex-col gap-4 pb-4">
+      <div className="text-4xl font-bold w-full pl-10 p-4 text-center"><h1>All Posts</h1></div>
+      <div className="w-full px-10 flex flex-col gap-4 pb-4">
         {
           allPost && allPost.map((post, index)=>
           <div key={post.$id}>
@@ -96,8 +96,8 @@ function BatchInfo() {
           </div>)
         }
       </div>
-      <div className="text-4xl font-bold w-full text-center p-4 bg-[#55DB89]"><h1>All Students</h1></div>
-      <div className="w-full flex gap-4 overflow-x-auto scrollbar-hide p-4 px-10 bg-[#55DB89]">
+      <div className="text-4xl font-bold w-full text-center p-4"><h1>All Students</h1></div>
+      <div className="w-full flex gap-4 overflow-x-auto scrollbar-hide p-4 px-10">
       {
         allStudent && allStudent.map((student, index)=>
         <div key={student.$id}>

@@ -14,6 +14,7 @@ import admin from "../Admin/admin.js";
 import database from "../appwrite/database.js";
 
 function Login() {
+  const [disabled, setDisabled] = useState(false);
   const [process, setProcess] = useState("Login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +23,7 @@ function Login() {
   const dispatch = useDispatch();
   const login = async (e) => {
     e.preventDefault();
+    setDisabled(true);
     setProcess("processing..");
     if (isAdmin && admin.email === email && admin.password == password) {
       await authService
@@ -37,6 +39,7 @@ function Login() {
         })
         .catch((error) => {
           setProcess("Login");
+          setDisabled(false);
           toast.error("Invalid email or password! Try Again.");
         });
     } else {
@@ -62,6 +65,7 @@ function Login() {
         })
         .catch((error) => {
           setProcess("Login");
+          setDisabled(false);
           toast.error("Invalid email or password! Try Again.");
         });
     }
@@ -115,6 +119,7 @@ function Login() {
             </p>
             <button
               type="submit"
+              disabled={disabled}
               className="bg-[#8aaaee] rounded-full text-[#fff] px-10 my-2 text-md"
             >
               {process}

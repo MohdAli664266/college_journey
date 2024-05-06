@@ -7,6 +7,7 @@ import database from "../appwrite/database";
 import toast from "react-hot-toast";
 
 function StudentRegistration() {
+  const [disabled, setDisabled] = useState(false);
   const userInfo = useSelector((state) => state.userInfo);
   const [loginId, setLoginId] = useState(userInfo.loggedInUser?.userId);
 
@@ -67,6 +68,7 @@ function StudentRegistration() {
 
   const onRegister = async (e) => {
     e.preventDefault();
+    setDisabled(true);
     const skills_arr = skills.split(",");
     const projects_arr = projects.split(",");
     const obj = {
@@ -97,7 +99,7 @@ function StudentRegistration() {
         toast.success("Student Registered successfully");
         navigate("/student_info");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setDisabled(false));
   };
 
   const handleDropdown = (e) => {
@@ -339,6 +341,7 @@ function StudentRegistration() {
           </div>
           <button
             type="submit"
+            disabled={disabled}
             className="hover:bg-[#8AAAEE] px-2 text-2xl rounded-sm hover:bg-transparent"
           >
             Register
