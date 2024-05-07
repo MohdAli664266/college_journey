@@ -19,6 +19,7 @@ import Verification from './Components/Signup/Verification.jsx'
 import {Toaster} from 'react-hot-toast';
 import BatchInfo from './Components/Batches/BatchInfo.jsx'
 import StudentPost from './Components/Post/StudentPost.jsx'
+import StudentUpdate from './Components/Registration/StudentUpdate.jsx'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path:'/student_reg',
         element:<StudentRegistration/>
+      },
+      {
+        path:'/student_update',
+        element:<StudentUpdate/>
       },
       {
         path:'/student_info',

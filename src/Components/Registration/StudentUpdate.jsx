@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 function StudentRegistration() {
   const [disabled, setDisabled] = useState(false);
-  const [register, setRegister] = useState("Register");
+  const [register, setRegister] = useState("Update");
   const userInfo = useSelector((state) => state.userInfo);
   const [loginId, setLoginId] = useState(userInfo.loggedInUser?.userId);
 
@@ -39,8 +39,8 @@ function StudentRegistration() {
   const [achievement, setAchievement] = useState(
     userInfo.studentInfo?.achievement
   );
-  const [skills, setSkills] = useState("");
-  const [projects, setProject] = useState("");
+  const [skills, setSkills] = useState(userInfo.studentInfo?.skills);
+  const [projects, setProject] = useState(userInfo.studentInfo?.projects);
   const [githubLink, setGithubLink] = useState(
     userInfo.studentInfo?.githubLink
   );
@@ -64,8 +64,6 @@ function StudentRegistration() {
     setDisabled(true);
     setRegister("Processing...");
     const file = document.getElementById("photo").files[0];
-    const skills_arr = skills.split(",");
-    const projects_arr = projects.split(",");
     const obj = {
       name: name,
       email: email,
@@ -83,16 +81,16 @@ function StudentRegistration() {
       certificateName: certificate,
       achievement: achievement,
       loginId: loginId,
-      skills: skills_arr,
-      projects: projects_arr,
+      skills: skills,
+      projects: projects,
       githubLink: githubLink,
       image:file,
     }
     dispatch(setStudentInfo(obj))
     await database
-      .registerStudent(obj)
+      .updateStudent(obj)
       .then((response) => {
-        toast.success("Student Registered successfully");
+        toast.success("Updated successfully");
         navigate("/student_info");
       })
       .catch((error) => {
@@ -113,7 +111,7 @@ function StudentRegistration() {
           className="flex flex-col justify-center items-center text-white gap-4"
         >
           <h1 className="sm:text-4xl text-2xl p-4 text-white font-bold">
-            Student Registration Form
+            Update Student Form
           </h1>
           <div className="grid sm:grid-cols-3 grid-cols-2 justify-center items-center gap-4 px-10">
             <div className="">
@@ -158,6 +156,7 @@ function StudentRegistration() {
                 <select
                   value={batchName}
                   id="batch"
+                  disabled
                   className="text-black outline-none border-none bg-transparent"
                   onChange={handleDropdown}
                 >
@@ -174,6 +173,7 @@ function StudentRegistration() {
                 className="w-full bg-transparent outline-none text-white border-b-2 border-white/50"
                 value={batchName}
                 required
+                disabled
               />
             </div>
             <div>
@@ -186,6 +186,7 @@ function StudentRegistration() {
                 name="batchId"
                 id="batchId"
                 required
+                disabled
               />
             </div>
             <div>
@@ -198,6 +199,7 @@ function StudentRegistration() {
                 name="password"
                 id="password"
                 required
+                disabled
               />
             </div>
             <div>
@@ -352,7 +354,7 @@ function StudentRegistration() {
           <button
             type="submit"
             disabled={disabled}
-            className="hover:bg-[#8AAAEE] px-2 text-2xl rounded-sm hover:bg-transparent"
+            className="hover:bg-[#5870a3] px-2 text-2xl rounded-sm hover:bg-transparent"
           >
             {register}
           </button>

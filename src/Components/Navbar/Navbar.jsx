@@ -181,7 +181,7 @@ function Navbar() {
                   Panel
                 </NavLink>
               )}
-              {user && (
+              {user && Object.keys(studentInfo).length <= 0 && (
                 <NavLink
                   to="/student_reg"
                   className={({ isActive }) =>
@@ -223,6 +223,21 @@ function Navbar() {
                   }
                 >
                   Profile
+                </NavLink>
+              )}
+
+              {user && Object.keys(studentInfo).length !== 0 && (
+                <NavLink
+                  to="/student_update"
+                  className={({ isActive }) =>
+                    `${
+                      isActive
+                        ? "px-1 text-gray-800 cursor-pointer transition-all duration-200 shadow-md bg-[#8aaaee] shadow-gray-950 rounded-md"
+                        : "hover:text-gray-800 cursor-pointer hover:transition-all duration-200 hover:shadow-md hover:bg-[#8aaaee] hover:shadow-gray-950 rounded-md"
+                    }`
+                  }
+                >
+                  RegistrationUpdate
                 </NavLink>
               )}
             </ul>

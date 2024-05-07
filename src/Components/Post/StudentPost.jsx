@@ -83,7 +83,7 @@ function StudentPost() {
             </div>
             <button
               type="submit"
-              disabled={true}
+              disabled={disabled}
               className="bg-[#8aaaee] rounded-full text-[#fff] px-10 my-2 sm:text-md text-xl"
             >
               {process}
