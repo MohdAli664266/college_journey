@@ -60,7 +60,7 @@ function BatchInfo() {
           </div>
         </div>
         <div className="w-1/2 ml-4 mr-4">
-          <h1 className="text-3xl font-bold mb-4">About the Event</h1>
+          <h1 className="text-3xl font-bold mb-4 text-white">About the Batch</h1>
           <p>
             <b>Batch Name: </b>
             <i>{batch.name}</i>

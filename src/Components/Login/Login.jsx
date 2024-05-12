@@ -12,7 +12,7 @@ import {
 import toast from "react-hot-toast";
 import admin from "../Admin/admin.js";
 import database from "../appwrite/database.js";
-
+import { useCallback, useEffect } from "react";
 function Login() {
   const [disabled, setDisabled] = useState(false);
   const [process, setProcess] = useState("Login");
@@ -50,13 +50,10 @@ function Login() {
           setPassword("");
           dispatch(loginReducer(true));
           dispatch(setLoggedInUser(response));
-          database.getStudent(response.userId)
-          .then((res)=>{
-            if(res.documents && res.documents.length > 0)
-            {
+          database.getStudent(response.userId).then((res) => {
+            if (res.documents && res.documents.length > 0) {
               dispatch(setStudentInfo(res.documents[0]));
-            }else
-            {
+            } else {
               dispatch(setStudentInfo({}));
             }
           });
@@ -70,13 +67,42 @@ function Login() {
         });
     }
   };
+
+  const loginWithGoogle = () => {
+    authService.account.createOAuth2Session(
+      "google",
+      "http://localhost:5173/login",
+      "http://localhost:5173/login"
+    );
+  };
+  const getUser = useCallback(() => {
+    authService.getCurrentUser().then((response) => {
+      authService.account.getSession("current").then((res) => {
+        localStorage.setItem("sessionId", res.$id);
+      });
+
+      dispatch(loginReducer(true));
+      dispatch(setLoggedInUser(response));
+      database.getStudent(response.$id).then((res) => {
+        if (res.documents && res.documents.length > 0) {
+          dispatch(setStudentInfo(res.documents[0]));
+        } else {
+          dispatch(setStudentInfo({}));
+        }
+      });
+      return true;
+    }).then((resp)=>navigate('/'))
+    ;
+  });
+
+  useEffect(() => getUser(), [getUser]);
   return (
     <>
       <div className="max-w-full h-auto py-16 flex justify-center items-center relative top-8">
-        <div className="shadow-lg flex bg-[#fff] text-[#8aaaee] shadow-gray-950 rounded-3xl">
+        <div className="shadow-lg flex flex-col gap-2 justify-center items-center bg-[#fff] text-[#8aaaee] shadow-gray-950 rounded-3xl">
           <form
             onSubmit={login}
-            className="flex flex-col justify-center items-center sm:max-w-xl h-auto border-3 sm:p-10  sm:gap-10 gap-3 max-w-md"
+            className="flex flex-col justify-center items-center sm:max-w-xl h-auto border-3 sm:px-10  sm:gap-10 gap-3 max-w-md"
           >
             <h1 className="text-xl sm:text-3xl px-5 py-2 font-bold">
               Login Form
@@ -125,6 +151,11 @@ function Login() {
               {process}
             </button>
           </form>
+          <div className="pb-4">
+            <button className="px-2" onClick={loginWithGoogle}>
+              Login with google
+            </button>
+          </div>
         </div>
       </div>
     </>

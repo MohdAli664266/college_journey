@@ -44,6 +44,10 @@ function StudentRegistration() {
   const [githubLink, setGithubLink] = useState(
     userInfo.studentInfo?.githubLink
   );
+  
+  const [emailv, setEmailv] = useState(userInfo.loggedInUser?.email);
+  const [verification, setVerification] = useState(userInfo.loggedInUser?.emailVerification);
+  const [verifiedLoginId, setVerifiedLoginId] = useState(userInfo.loggedInUser?.$id);
 
   const [allBatch, setAllBatch] = useState([]);
   const navigate = useNavigate();
@@ -53,6 +57,11 @@ function StudentRegistration() {
     if (!userInfo.user) {
       navigate("/login");
     }
+    if(verification)
+      {
+        setEmail(emailv);
+        setLoginId(verifiedLoginId);
+      }
     database.getAllBatches().then((response) => {
       setAllBatch(response.documents);
       console.log(response.documents);
