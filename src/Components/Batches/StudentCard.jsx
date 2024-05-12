@@ -1,5 +1,5 @@
 import React from "react";
-import imageUrl from "../../assets/Mohd_Ali.jpeg";
+import imageUrl from "../../assets/student.jpg";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setStudentInfo } from "../Store/Reducers/Reducer";
