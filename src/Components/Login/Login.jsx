@@ -71,8 +71,8 @@ function Login() {
   const loginWithGoogle = () => {
     authService.account.createOAuth2Session(
       "google",
-      "http://localhost:5173/login",
-      "http://localhost:5173/login"
+      "https://college-journey.vercel.app/login",
+      "https://college-journey.vercel.app/login"
     );
   };
   const getUser = useCallback(() => {
