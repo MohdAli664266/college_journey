@@ -48,6 +48,15 @@ export class AuthService{
         }
     }
 
+    async getAllUsers()
+    {
+        try {
+            return await this.account.list()
+        } catch (error) {
+            throw error
+        }
+    }
+
     async logout()
     {
         try {

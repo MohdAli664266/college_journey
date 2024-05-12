@@ -60,6 +60,13 @@ export class DatabaseClass {
       });
   }
 
+  async getAllPosts() {
+    try {
+      return await this.databases.listDocuments(conf.databaseId, conf.postId);
+    } catch (error) {
+      throw error;
+    }
+  }
   async getAllPost(batchId) {
     try {
       return await this.databases.listDocuments(conf.databaseId, conf.postId, [
@@ -202,6 +209,19 @@ export class DatabaseClass {
       throw error;
     }
   }
+
+  async getAllStudents() {
+    try {
+      return await this.databases.listDocuments(
+        conf.databaseId,
+        conf.studentId
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
   async getAllBatchStudent(batchId) {
     try {
       return await this.databases.listDocuments(
