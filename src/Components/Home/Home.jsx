@@ -6,7 +6,7 @@ import ProjectCard from "../Projects/ProjectCard";
 import Ali from "../../assets/Mohd_Ali.jpeg";
 import Anil from "../../assets/anil.jpg";
 import Abbas from "../../assets/abbas.jpg";
-import Yashika from "../../assets/yashika.jpeg";
+import Yashika from "../../assets/yashika.jpg";
 
 function Home() {
   const colors = [
@@ -33,7 +33,6 @@ function Home() {
       img: Ali,
       name: "Mohd Ali",
       profession: "Full Stack Developver",
-      name: "Mohd Ali",
 
       bio: "A motivated student with expertise in Problem Solving and Logic Building and having a good command over Data Structures and Algorithms along with positive attitude and Critical Thinking.",
       skills: ["JavaScript", "React", "HTML", "CSS", "TailwindCSS", "Android", "Python","Appwrite", "Firebase", "MongoDB", "MySQL"],
