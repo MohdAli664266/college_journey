@@ -1,18 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const DeveloperProfile = () => {
-  const developer = {
-    name: "Mohd Ali",
-    bio: "A motivated student with expertise in Problem Solving and Logic Building and having a good command over Data Structures and Algorithms along with positive attitude and Critical Thinking.",
-    skills: ["JavaScript", "React", "HTML", "CSS", "TailwindCSS"],
-    experience: "3+ years",
-    education: "Bachelor's Degree in Computer Science",
-    location: "Chandpur, Moradabad",
-    email: "john.doe@example.com",
-    website: "https://johndoe.com",
-    github: "https://github.com/johndoe",
-    linkedin: "https://www.linkedin.com/in/johndoe",
-  };
+  const developer = useSelector((state)=>state.userInfo.developercard);
 
   return (
     <div className="flex justify-center items-center py-20">
@@ -23,6 +13,12 @@ const DeveloperProfile = () => {
           <h2 className="text-lg font-semibold mt-4">Skills:</h2>
           <ul className="list-disc pl-5">
             {developer.skills.map((skill, index) => (
+              <li key={index}>{skill}</li>
+            ))}
+          </ul>
+          <h2 className="text-lg font-semibold mt-4">Projects:</h2>
+          <ul className="list-disc pl-5">
+            {developer.projects.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}
           </ul>

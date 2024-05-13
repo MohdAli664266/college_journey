@@ -1,7 +1,18 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { setDevelopercard } from '../Store/Reducers/Reducer'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 
 function HomeCards({detail}) { 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const developer=()=>
+        {
+            dispatch(setDevelopercard(detail));
+            navigate('/developer');
+        }
   return (
     <>
         <div className='relative grid grid-rows-1 md:gap-4 backdrop-blur-sm sm:bg-transparent'>
@@ -14,8 +25,9 @@ function HomeCards({detail}) {
                 <hr className={`bg-white border-1 border-[#fff] w-full`} />
                 <div className='w-full flex flex-col justify-center items-center gap-5'>
                     <p className={`text-white mx-1 font-thin`}>{detail.profession}</p>
-                    <button className={`bg-white md:px-4 px-1 sm:text-lg hover:translate-y-0.5 duration-200`}>
-                        <NavLink to = 'developer'>Read more</NavLink>
+                    <button className={`bg-white md:px-4 px-1 sm:text-lg hover:translate-y-0.5 duration-200`} onClick={developer}>
+                        Read More
+                        {/* <NavLink to = 'developer'>Read more</NavLink> */}
                     </button>
                 </div>
             </div>

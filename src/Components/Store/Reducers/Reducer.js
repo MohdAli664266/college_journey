@@ -9,7 +9,8 @@ const initialState = {
         batchImg:'',
         loggedInUser: {},
         studentInfo: {},
-        admin: false
+        admin: false,
+        developercard: {},
     }
 }
 const userSlice = createSlice({
@@ -49,10 +50,15 @@ const userSlice = createSlice({
         setStudentInfo: (state, action)=>
         {
             state.userInfo.studentInfo = action.payload
+        },
+
+        setDevelopercard: (state, action)=>
+        {
+            state.userInfo.developercard = action.payload
         }
 
     }
 
 })
-export const {loginReducer, logoutReducer, setAdmin, setBatch, setLoggedInUser, setStudentInfo, setBatchStudents} = userSlice.actions
+export const {loginReducer, logoutReducer, setAdmin, setBatch, setLoggedInUser, setStudentInfo, setBatchStudents, setDevelopercard} = userSlice.actions
 export default userSlice.reducer;

@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaInstagram, FaLinkedinIn, FaGithub, FaTwitter  } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-
+import toast from 'react-hot-toast';
 function Footer() {
+  const [email, setEmail] = useState('');
+  const contactThrowEmail = ()=>
+    {
+      toast.success("Thank your! We will contact you ASAP on "+ email);
+      setEmail('');
+    }
   return (
     <>
     <footer class="bg-[#8aaaee] text-white">
@@ -12,8 +18,8 @@ function Footer() {
               <div className='bg-transparent shadow-md shadow-slate-950 p-4'>
                 <h1 className='text-3xl font-bold'>Stay Connect</h1>
                 <div className='flex overflow-hidden mt-8 shadow-lg shadow-gray-950 rounded-lg'>
-                <input className='w-full outline-none py-1 px-3 text-[#0f0]' type="text" name="name" id="name" placeholder='Enter your email' />
-                <button className='bg-[#8aaaee] shrink-0 px-2 font-bold hover:text-[#88ccee]' onClick={()=>(alert)("Site is on production phase still")}>Submit</button>
+                <input className='w-full outline-none py-1 px-3 text-[#0f0]' type="email" name="name" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Enter your email' />
+                <button className='bg-[#8aaaee] shrink-0 px-2 font-bold hover:text-[#88ccee]' onClick={contactThrowEmail}>Submit</button>
                 </div>
               </div>
 

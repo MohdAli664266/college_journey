@@ -33,14 +33,67 @@ function Home() {
       img: Ali,
       name: "Mohd Ali",
       profession: "Full Stack Developver",
+      name: "Mohd Ali",
+
+      bio: "A motivated student with expertise in Problem Solving and Logic Building and having a good command over Data Structures and Algorithms along with positive attitude and Critical Thinking.",
+      skills: ["JavaScript", "React", "HTML", "CSS", "TailwindCSS", "Android", "Python","Appwrite", "Firebase", "MongoDB", "MySQL"],
+      experience: "3+ years",
+      projects: ["ServiceHub", "Number System Converter", "Music Player", "College Journey"],
+      education: "Bachelor's Degree in Computer Science",
+      location: "Chandpur, Moradabad",
+      email: "moaliansari664266@gmail.com",
+      website: "https://college-journey.vercel.app",
+      github: "https://github.com/mohdali664266",
+      linkedin: "https://www.linkedin.com/in/johndoe",
     },
     {
       img: Anil,
       name: "Anil Kumar",
       profession: "Web Developer",
+
+      bio: "A motivated student with expertise in Problem Solving and Logic Building and having a good command over Data Structures and Algorithms along with positive attitude and Critical Thinking.",
+      skills: ["JavaScript", "React", "HTML", "CSS", "TailwindCSS"],
+      projects: ["ServiceHub", "Number System Converter", "Music Player", "College Journey"],
+      experience: "1+ years",
+      education: "Bachelor's Degree in Computer Science",
+      location: "Niswa, Rampur",
+      email: "john.doe@example.com",
+      website: "https://johndoe.com",
+      github: "https://github.com/johndoe",
+      linkedin: "https://www.linkedin.com/in/johndoe",
     },
-    { img: Abbas, name: "Mohd Abbas", profession: "Full Stack Developer" },
-    { img: Yashika, name: "Yashika Gupta", profession: "Backend Developer" },
+    {
+      img: Abbas,
+      name: "Mohd Abbas",
+      profession: "Full Stack Developer",
+
+      bio: "A motivated student with expertise in Problem Solving and Logic Building and having a good command over Data Structures and Algorithms along with positive attitude and Critical Thinking.",
+      skills: ["Python", "Tensor Flow", "HTML", "CSS", "Javascript"],
+      projects: ["ServiceHub", "Number System Converter", "Music Player", "College Journey"],
+      experience: "3+ years",
+      education: "Bachelor's Degree in Computer Science",
+      location: "Chandpur, Rampur",
+      email: "mabbas432@gmail.com",
+      website: "https://college-journey.vercel.app",
+      github: "https://github.com/mohdali664266",
+      linkedin: "https://www.linkedin.com/in/johndoe",
+    },
+    {
+      img: Yashika,
+      name: "Yashika Gupta",
+      profession: "Backend Developer",
+
+      bio: "A motivated student with expertise in Problem Solving and Logic Building and having a good command over Data Structures and Algorithms along with positive attitude and Critical Thinking.",
+      skills: ["JavaScript", "AWS", "HTML", "CSS", "TailwindCSS"],
+      projects: ["ServiceHub", "Number System Converter", "Music Player", "College Journey"],
+      experience: "1+ years",
+      education: "Bachelor's Degree in Computer Science",
+      location: "Budhi Bihar, Moradabad",
+      email: "john.doe@example.com",
+      website: "https://johndoe.com",
+      github: "https://github.com/johndoe",
+      linkedin: "https://www.linkedin.com/in/johndoe",
+    },
   ];
   return (
     <>
@@ -64,7 +117,9 @@ function Home() {
           {/* developer cards for tablet and greater than tables */}
           <div className="sm:flex hidden lg:justify-center items-center p-3 gap-5 overflow-x-auto scrollbar-hide w-full">
             {details.map((detail, index) => (
-              <div key={index}><HomeCards detail={detail} /></div>
+              <div key={index}>
+                <HomeCards detail={detail} />
+              </div>
             ))}
           </div>
         </div>
@@ -76,7 +131,9 @@ function Home() {
         </div>
         <div className="gap-4 p-4 flex md:items-center overflow-x-auto scrollbar-hide">
           {details.map((detail, index) => (
-            <div key={index}><HomeCards detail={detail} /></div>
+            <div key={index}>
+              <HomeCards detail={detail} />
+            </div>
           ))}
         </div>
       </div>
@@ -106,7 +163,9 @@ function Home() {
         </div>
         <div className="gap-4 p-4 flex md:items-center overflow-x-auto scrollbar-hide">
           {colors.map((value, index) => (
-            <div key={index}><ProjectCard /></div>
+            <div key={index}>
+              <ProjectCard />
+            </div>
           ))}
         </div>
       </div>
